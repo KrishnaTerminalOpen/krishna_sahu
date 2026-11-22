@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { PORTFOLIO_CONTENT } from '@/data/content';
 import { useTheme } from './ThemeProvider';
-import { Moon, Sun, Menu, X, MapPin, Clock } from 'lucide-react';
+import { Moon, Sun, Menu, X } from 'lucide-react';
 
 interface NavbarProps {
   onOpenCommandPalette?: () => void;
@@ -13,39 +13,15 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [timeString, setTimeString] = useState<string>('');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
-    const updateTime = () => {
-      try {
-        const now = new Date();
-        const formatted = new Intl.DateTimeFormat('en-US', {
-          hour: '2-digit',
-          minute: '2-digit',
-          second: '2-digit',
-          hour12: true,
-          timeZone: PORTFOLIO_CONTENT.personal.timezone || undefined,
-        }).format(now);
-        setTimeString(formatted);
-      } catch {
-        setTimeString(new Date().toLocaleTimeString());
-      }
-    };
-
-    updateTime();
-    const interval = setInterval(updateTime, 1000);
     window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      clearInterval(interval);
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
 
 
   const navItems = [
@@ -89,35 +65,31 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
           ))}
         </nav>
 
-        {/* Actions (Location, Live Time, Theme Toggle) */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          {/* Location & Live Time Telemetry in Navbar (Clean & Unhighlighted) */}
-          <div className="hidden sm:flex items-center gap-2.5 px-2 py-1 font-mono text-xs text-muted">
-            <div className="flex items-center gap-1.5 text-[11px]">
-              <MapPin className="w-3 h-3 text-accent/80" />
-              <span>{PORTFOLIO_CONTENT.personal.location}</span>
-            </div>
-            <span className="text-border">·</span>
-            <div className="flex items-center gap-1.5 text-[11px]">
-              <Clock className="w-3 h-3 text-muted/80" />
-              <span suppressHydrationWarning className="tabular-nums text-foreground/80">
-                {timeString || '12:00:00 PM'}
-              </span>
-            </div>
-          </div>
-
-          {/* Theme Toggle Button */}
+        {/* Actions */}
+        <div className="flex items-center gap-2">
+          {/* Unique Editorial Theme Dial (Solar / Lunar Eclipse Dial) */}
           <button
             onClick={toggleTheme}
             type="button"
-            className="p-1.5 rounded-lg border border-border bg-surface text-muted hover:text-foreground hover:border-accent/40 transition-all"
+            className="group relative p-2 rounded-full border border-border/70 bg-surface hover:border-accent/50 hover:bg-surface-elevated transition-all duration-300"
             aria-label="Toggle theme"
+            title={theme === 'dark' ? 'Switch to Warm Editorial Light' : 'Switch to Dark Mode'}
           >
-            {theme === 'dark' ? (
-              <Sun className="w-3.5 h-3.5 text-amber-400" />
-            ) : (
-              <Moon className="w-3.5 h-3.5 text-neutral-700" />
-            )}
+            <div className="relative w-4 h-4 flex items-center justify-center">
+              {/* Outer orbit ring */}
+              <span className="absolute inset-0 rounded-full border border-accent/40 group-hover:border-accent transition-colors animate-[spin_12s_linear_infinite]" />
+              
+              {/* Inner celestial core */}
+              {theme === 'dark' ? (
+                // Dark mode: Amber solar core with gentle pulse
+                <span className="relative w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(228,168,83,0.6)] transition-all group-hover:scale-110" />
+              ) : (
+                // Light mode: Minimalist half-eclipse lunar disc
+                <span className="relative w-2.5 h-2.5 rounded-full border border-foreground bg-foreground overflow-hidden">
+                  <span className="absolute inset-0 w-full h-full bg-surface translate-x-1 -translate-y-0.5 rounded-full" />
+                </span>
+              )}
+            </div>
           </button>
 
 
