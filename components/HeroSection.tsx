@@ -26,9 +26,6 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
 
         {/* Identity & Role */}
         <div className="space-y-2 mb-6">
-          <div className="font-mono text-xs uppercase tracking-widest text-accent">
-            {hero.eyebrow}
-          </div>
           <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl text-foreground font-normal tracking-tight leading-[1.05]">
             {personal.name}
           </h1>
