@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { PORTFOLIO_CONTENT } from '@/data/content';
 import { useTheme } from './ThemeProvider';
-import { Moon, Sun, Menu, X } from 'lucide-react';
+import { Moon, Sun, Menu, X, MapPin, Clock } from 'lucide-react';
 
 interface NavbarProps {
   onOpenCommandPalette?: () => void;
@@ -13,15 +13,39 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [timeString, setTimeString] = useState<string>('');
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
 
+    const updateTime = () => {
+      try {
+        const now = new Date();
+        const formatted = new Intl.DateTimeFormat('en-US', {
+          hour: '2-digit',
+          minute: '2-digit',
+          second: '2-digit',
+          hour12: true,
+          timeZone: PORTFOLIO_CONTENT.personal.timezone || undefined,
+        }).format(now);
+        setTimeString(formatted);
+      } catch {
+        setTimeString(new Date().toLocaleTimeString());
+      }
+    };
+
+    updateTime();
+    const interval = setInterval(updateTime, 1000);
     window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener('scroll', handleScroll);
+    };
   }, []);
+
 
 
   const navItems = [
@@ -65,8 +89,23 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
           ))}
         </nav>
 
-        {/* Actions */}
-        <div className="flex items-center gap-2">
+        {/* Actions (Location, Live Time, Theme Toggle) */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Location & Live Time Telemetry in Navbar */}
+          <div className="hidden sm:flex items-center gap-2.5 px-3 py-1 rounded-full border border-border/80 bg-surface/80 font-mono text-xs text-muted">
+            <div className="flex items-center gap-1 text-[11px]">
+              <MapPin className="w-3 h-3 text-accent" />
+              <span>{PORTFOLIO_CONTENT.personal.location}</span>
+            </div>
+            <span className="text-border">·</span>
+            <div className="flex items-center gap-1 text-[11px]">
+              <Clock className="w-3 h-3 text-muted" />
+              <span suppressHydrationWarning className="tabular-nums text-foreground/85">
+                {timeString || '12:00:00 PM'}
+              </span>
+            </div>
+          </div>
+
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
@@ -80,6 +119,7 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
               <Moon className="w-3.5 h-3.5 text-neutral-700" />
             )}
           </button>
+
 
 
           {/* Mobile Menu Button */}
