@@ -91,16 +91,16 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
 
         {/* Actions (Location, Live Time, Theme Toggle) */}
         <div className="flex items-center gap-2 sm:gap-3">
-          {/* Location & Live Time Telemetry in Navbar */}
-          <div className="hidden sm:flex items-center gap-2.5 px-3 py-1 rounded-full border border-border/80 bg-surface/80 font-mono text-xs text-muted">
-            <div className="flex items-center gap-1 text-[11px]">
-              <MapPin className="w-3 h-3 text-accent" />
+          {/* Location & Live Time Telemetry in Navbar (Clean & Unhighlighted) */}
+          <div className="hidden sm:flex items-center gap-2.5 px-2 py-1 font-mono text-xs text-muted">
+            <div className="flex items-center gap-1.5 text-[11px]">
+              <MapPin className="w-3 h-3 text-accent/80" />
               <span>{PORTFOLIO_CONTENT.personal.location}</span>
             </div>
             <span className="text-border">·</span>
-            <div className="flex items-center gap-1 text-[11px]">
-              <Clock className="w-3 h-3 text-muted" />
-              <span suppressHydrationWarning className="tabular-nums text-foreground/85">
+            <div className="flex items-center gap-1.5 text-[11px]">
+              <Clock className="w-3 h-3 text-muted/80" />
+              <span suppressHydrationWarning className="tabular-nums text-foreground/80">
                 {timeString || '12:00:00 PM'}
               </span>
             </div>
