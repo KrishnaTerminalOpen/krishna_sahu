@@ -19,6 +19,9 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
       <LivingDataCanvas />
 
       <div className="relative z-10 flex flex-col items-start max-w-3xl">
+        {/* Mobile-Only Location & Live Clock (Displays only on screens where navbar hides it) */}
+        <HeroStatusStrip />
+
         {/* Identity & Role */}
         <div className="space-y-3 mb-6">
           <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl text-foreground font-normal tracking-tight leading-[1.05]">
