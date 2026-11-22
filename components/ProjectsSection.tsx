@@ -1,10 +1,12 @@
 'use client';
 
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { PORTFOLIO_CONTENT, ProjectItem } from '@/data/content';
 import { SectionHeader } from './SectionHeader';
 import { CaseStudyModal } from './CaseStudyModal';
-import { ArrowUpRight, Github, ExternalLink, Cpu, Sparkles, ArrowRight } from 'lucide-react';
+import { ArrowUpRight, Github, ExternalLink, Sparkles, ArrowRight, Eye } from 'lucide-react';
+
 
 export function ProjectsSection() {
   const { projects } = PORTFOLIO_CONTENT;
@@ -77,42 +79,41 @@ export function ProjectsSection() {
               </div>
             </div>
 
-            {/* Main Content Layout */}
+            {/* Main Content Layout (Architectural Split Dossier) */}
             <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-              {/* Left Column (8 cols): Title, Summary & Clean Architecture Pipeline */}
-              <div className="lg:col-span-8 space-y-4">
-                <h3
-                  onClick={() => setSelectedCaseStudy(project)}
-                  className="font-serif text-3xl sm:text-4xl text-foreground font-normal tracking-tight group-hover:text-accent transition-colors cursor-pointer leading-tight flex items-baseline gap-2"
-                >
-                  <span>{project.title}</span>
-                  <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-accent shrink-0" />
-                </h3>
+              {/* Left Column (7 cols): Information, Architecture, Stack, and Actions */}
+              <div className="lg:col-span-7 flex flex-col justify-between space-y-5">
+                <div className="space-y-3">
+                  <h3
+                    onClick={() => setSelectedCaseStudy(project)}
+                    className="font-serif text-2xl sm:text-3xl lg:text-4xl text-foreground font-normal tracking-tight group-hover:text-accent transition-colors cursor-pointer leading-tight flex items-baseline gap-2"
+                  >
+                    <span>{project.title}</span>
+                    <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-accent shrink-0" />
+                  </h3>
 
-                <p className="font-sans text-sm sm:text-base text-muted font-light leading-relaxed max-w-2xl">
-                  {project.summary}
-                </p>
+                  <p className="font-sans text-sm sm:text-base text-muted font-light leading-relaxed">
+                    {project.summary}
+                  </p>
 
-                {/* Clean Architecture Pipeline Tag */}
-                {project.architecture && (
-                  <div className="pt-2">
-                    <div className="flex flex-wrap items-center gap-2 font-mono text-xs text-muted">
-                      <span className="text-accent text-[11px] font-medium tracking-wider uppercase">
-                        Architecture:
-                      </span>
-                      <span className="text-foreground/90 font-light">
-                        {project.architecture}
-                      </span>
+                  {/* Clean Architecture Pipeline Tag */}
+                  {project.architecture && (
+                    <div className="pt-1">
+                      <div className="flex flex-wrap items-center gap-2 font-mono text-xs text-muted">
+                        <span className="text-accent text-[11px] font-medium tracking-wider uppercase">
+                          Architecture:
+                        </span>
+                        <span className="text-foreground/90 font-light">
+                          {project.architecture}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                )}
-              </div>
+                  )}
+                </div>
 
-              {/* Right Column (4 cols): Tech Stack & Direct Actions */}
-              <div className="lg:col-span-4 flex flex-col justify-between h-full space-y-6 lg:pl-6">
                 {/* Tech Pills */}
-                <div>
-                  <div className="font-mono text-[10px] uppercase tracking-wider text-subtle mb-2.5">
+                <div className="pt-1">
+                  <div className="font-mono text-[10px] uppercase tracking-wider text-subtle mb-2">
                     Production Stack
                   </div>
                   <div className="flex flex-wrap gap-1.5">
@@ -162,6 +163,51 @@ export function ProjectsSection() {
                         <ExternalLink className="w-3.5 h-3.5" />
                       </a>
                     )}
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column (5 cols): Embedded Architectural Viewport */}
+              <div className="lg:col-span-5 w-full">
+                <div
+                  onClick={() => setSelectedCaseStudy(project)}
+                  className="relative group/viewport cursor-pointer rounded-xl overflow-hidden border border-border/80 bg-[#0d0e12] shadow-sm hover:border-accent/50 transition-all duration-300"
+                >
+                  {/* Viewport Header Bar */}
+                  <div className="flex items-center justify-between px-3.5 py-2 bg-[#14161c] border-b border-border/60 font-mono text-[10px] text-subtle">
+                    <div className="flex items-center gap-1.5">
+                      <span className="w-2 h-2 rounded-full bg-border" />
+                      <span className="w-2 h-2 rounded-full bg-border" />
+                      <span className="w-2 h-2 rounded-full bg-border" />
+                    </div>
+                    <span className="tracking-widest uppercase text-muted font-medium">SYSTEM VIEW</span>
+                  </div>
+
+                  {/* Image Container with Subtle Ambient Vignette */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0c0d0f]">
+                    {project.imageUrl ? (
+                      <Image
+                        src={project.imageUrl}
+                        alt={project.title}
+                        fill
+                        className="object-cover object-top transition-transform duration-500 ease-out group-hover/viewport:scale-[1.03]"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-subtle font-mono text-xs">
+                        [ SYSTEM PREVIEW ]
+                      </div>
+                    )}
+
+                    {/* Gradient Overlay for Editorial Depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0d0e12]/80 via-transparent to-transparent pointer-events-none" />
+
+                    {/* Hover Inspect Pill */}
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/viewport:opacity-100 transition-opacity duration-200 bg-background/30 backdrop-blur-[2px]">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface text-foreground font-mono text-xs border border-border/80 shadow-md">
+                        <Eye className="w-3.5 h-3.5 text-accent" />
+                        <span>Inspect Architecture</span>
+                      </span>
+                    </div>
                   </div>
                 </div>
               </div>
