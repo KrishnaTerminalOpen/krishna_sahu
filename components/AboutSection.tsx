@@ -21,7 +21,7 @@ export function AboutSection() {
       </p>
 
       {/* 3 Focused "What that looks like" Pillars */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-8 border-t border-b border-border mb-12">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-8 border-t border-border">
         {about.pillars.map((pillar) => (
           <div key={pillar.title} className="space-y-2">
             <div className="font-mono text-xs text-accent uppercase tracking-wider">
@@ -33,18 +33,7 @@ export function AboutSection() {
           </div>
         ))}
       </div>
-
-      {/* Minimal Inline Counter Numbers */}
-      <div className="flex flex-wrap items-center gap-8 sm:gap-16 font-mono text-xs text-muted">
-        {about.stats.map((stat, i) => (
-          <div key={i} className="flex items-baseline gap-2">
-            <span className="font-serif text-3xl text-foreground font-light">
-              <Counter to={stat.value} suffix={stat.suffix} />
-            </span>
-            <span className="text-subtle uppercase tracking-wider text-[11px]">{stat.label}</span>
-          </div>
-        ))}
-      </div>
     </section>
   );
 }
+
