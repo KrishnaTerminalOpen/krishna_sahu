@@ -67,30 +67,20 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
 
         {/* Actions */}
         <div className="flex items-center gap-2">
-          {/* Unique Editorial Theme Dial (Solar / Lunar Eclipse Dial) */}
+          {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
             type="button"
-            className="group relative p-2 rounded-full border border-border/70 bg-surface hover:border-accent/50 hover:bg-surface-elevated transition-all duration-300"
+            className="p-1.5 rounded-lg border border-border bg-surface text-muted hover:text-foreground hover:border-accent/40 transition-all"
             aria-label="Toggle theme"
-            title={theme === 'dark' ? 'Switch to Warm Editorial Light' : 'Switch to Dark Mode'}
           >
-            <div className="relative w-4 h-4 flex items-center justify-center">
-              {/* Outer orbit ring */}
-              <span className="absolute inset-0 rounded-full border border-accent/40 group-hover:border-accent transition-colors animate-[spin_12s_linear_infinite]" />
-              
-              {/* Inner celestial core */}
-              {theme === 'dark' ? (
-                // Dark mode: Amber solar core with gentle pulse
-                <span className="relative w-2 h-2 rounded-full bg-accent shadow-[0_0_8px_rgba(228,168,83,0.6)] transition-all group-hover:scale-110" />
-              ) : (
-                // Light mode: Minimalist half-eclipse lunar disc
-                <span className="relative w-2.5 h-2.5 rounded-full border border-foreground bg-foreground overflow-hidden">
-                  <span className="absolute inset-0 w-full h-full bg-surface translate-x-1 -translate-y-0.5 rounded-full" />
-                </span>
-              )}
-            </div>
+            {theme === 'dark' ? (
+              <Sun className="w-3.5 h-3.5 text-amber-400" />
+            ) : (
+              <Moon className="w-3.5 h-3.5 text-neutral-700" />
+            )}
           </button>
+
 
 
 
