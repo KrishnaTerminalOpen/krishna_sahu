@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { PORTFOLIO_CONTENT } from '@/data/content';
+import { HeroStatusStrip } from './HeroStatusStrip';
 import { LivingDataCanvas } from './LivingDataCanvas';
-import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
-
+import { ArrowDownRight, ArrowUpRight, Sparkles } from 'lucide-react';
 
 interface HeroSectionProps {
   onOpenAiAssistant: () => void;
@@ -14,13 +14,13 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
   const { personal, hero } = PORTFOLIO_CONTENT;
 
   return (
-    <section className="relative min-h-[78vh] flex flex-col justify-center pt-28 pb-16 overflow-hidden border-b border-border">
+    <section className="relative min-h-[82vh] flex flex-col justify-center pt-36 sm:pt-40 md:pt-44 pb-20 overflow-hidden border-b border-border">
       {/* Living Data Animated Canvas in Background */}
       <LivingDataCanvas />
 
       <div className="relative z-10 flex flex-col items-start max-w-3xl">
         {/* Identity & Role */}
-        <div className="space-y-2 mb-6">
+        <div className="space-y-3 mb-6">
           <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl text-foreground font-normal tracking-tight leading-[1.05]">
             {personal.name}
           </h1>
