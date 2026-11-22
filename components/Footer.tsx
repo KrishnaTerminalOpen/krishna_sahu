@@ -14,16 +14,10 @@ export function Footer() {
 
   return (
     <footer className="py-12 border-t border-border mt-12">
-      <div className="flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-xs text-muted">
-        {/* Left: Copyright & Name */}
+      <div className="flex items-center justify-between gap-4 font-mono text-xs text-muted">
+        {/* Left: Year & Name */}
         <div className="flex items-center gap-2">
           <span>&copy; {currentYear} {footer.copyrightName}.</span>
-          <span className="text-subtle hidden md:inline">All rights reserved.</span>
-        </div>
-
-        {/* Center: Typography credits */}
-        <div className="text-subtle text-[11px]">
-          {footer.setIn}
         </div>
 
         {/* Right: Back to Top */}
@@ -39,5 +33,6 @@ export function Footer() {
       </div>
     </footer>
   );
+
 }
 
