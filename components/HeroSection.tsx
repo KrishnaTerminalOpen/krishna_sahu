@@ -85,27 +85,6 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
             <span>LinkedIn</span>
             <ArrowUpRight className="w-3 h-3 text-muted" />
           </a>
-
-          <a
-            href={personal.resumePath}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
-          >
-            <span>Resume (PDF)</span>
-            <ArrowUpRight className="w-3 h-3 text-muted" />
-          </a>
-
-          <span className="text-border">/</span>
-
-          <button
-            onClick={onOpenAiAssistant}
-            type="button"
-            className="inline-flex items-center gap-1.5 text-accent hover:opacity-80 transition-opacity"
-          >
-            <Sparkles className="w-3 h-3" />
-            <span>Ask Aura</span>
-          </button>
         </div>
       </div>
     </section>
