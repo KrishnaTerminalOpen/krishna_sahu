@@ -70,7 +70,13 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+  },
 };
+
 
 export const viewport: Viewport = {
   themeColor: '#0c0d0f',
