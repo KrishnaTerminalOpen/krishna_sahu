@@ -7,7 +7,7 @@ const rateLimitMap = new Map<string, number[]>();
 function checkRateLimit(ip: string): boolean {
   const now = Date.now();
   const windowMs = 60 * 1000; // 1 minute
-  const maxRequests = 15; // max 15 requests per minute
+  const maxRequests = 25; // max 25 requests per minute
 
   const timestamps = rateLimitMap.get(ip) || [];
   const recentTimestamps = timestamps.filter((time) => now - time < windowMs);
@@ -21,80 +21,116 @@ function checkRateLimit(ip: string): boolean {
   return true;
 }
 
-// Built-in intelligent knowledge matcher engine for zero-config immediate functionality
-function answerFromKnowledgeBase(query: string): string {
+// Portfolio-grounded answer engine
+function answerFromKnowledgeBase(query: string): string | null {
   const q = query.toLowerCase().trim();
 
-  // Greeting
+  // Greetings
   if (['hi', 'hello', 'hey', 'greetings', 'who are you'].some((kw) => q === kw || q.startsWith(kw + ' '))) {
-    return `Hello! I am Aura, Krishna's portfolio assistant. You can ask me about Krishna's machine learning projects (like AuraVision or FinSignal), his technical stack, education, or how to contact him. How can I help you today?`;
+    return `Hello! I am Aura, an intelligent AI assistant on Krishna Sahu's portfolio. You can ask me about Krishna's machine learning research, his technical skills, projects (like AuraVision or FinSignal), or any general question. How can I help you?`;
   }
 
   // Projects
   if (q.includes('project') || q.includes('auravision') || q.includes('finsignal') || q.includes('pulsemetrics') || q.includes('synthetix') || q.includes('built')) {
-    if (q.includes('auravision') || q.includes('vision') || q.includes('defect')) {
-      return `AuraVision is Krishna's real-time computer vision defect detection system. It uses YOLOv8 and PyTorch to classify manufacturing anomalies with 98.4% precision and 32ms inference latency. Packaged with FastAPI and Docker.`;
+    if (q.includes('auravision') || q.includes('defect') || q.includes('vision')) {
+      return `**AuraVision** is Krishna's real-time computer vision defect detection system. It employs an optimized YOLOv8 and PyTorch pipeline to classify manufacturing anomalies with **98.4% precision** and **32ms inference latency**, containerized using FastAPI and Docker.`;
     }
-    if (q.includes('finsignal') || q.includes('market') || q.includes('sentiment') || q.includes('finance')) {
-      return `FinSignal is an algorithmic sentiment analysis engine built with fine-tuned FinBERT transformers and spaCy. It processes 1.2M textual financial records per day with an 84.2% directional F1 score.`;
+    if (q.includes('finsignal') || q.includes('market') || q.includes('sentiment')) {
+      return `**FinSignal** is an algorithmic sentiment analysis engine built with fine-tuned FinBERT transformers and spaCy. It processes 1.2M textual financial filings and news daily with an 84.2% directional F1 score.`;
     }
     if (q.includes('pulse') || q.includes('churn') || q.includes('retention')) {
-      return `PulseMetrics is an enterprise churn prediction platform using XGBoost and survival analysis on 68 behavioral features, achieving 40% churn reduction and an ROC-AUC of 0.91.`;
+      return `**PulseMetrics** is an enterprise churn intelligence platform using XGBoost and survival analysis over 68 behavioral features, achieving 40% churn reduction and an ROC-AUC of 0.91.`;
     }
-    if (q.includes('synthetix') || q.includes('diagnostic') || q.includes('suite')) {
-      return `Synthetix is an interactive model diagnostic suite built client-side with Next.js, D3.js, and WebAssembly, enabling instant slicing of confusion matrices and ROC curves under 15ms.`;
+    if (q.includes('synthetix') || q.includes('diagnostic') || q.includes('workbench')) {
+      return `**Synthetix** is an interactive model diagnostic workbench built in Next.js, D3.js, and WebAssembly, enabling instant client-side slicing of confusion matrices and ROC curves under 15ms.`;
     }
-    return `Krishna has built 4 key featured projects:\n\n1. **AuraVision**: Real-time defect detection with PyTorch & YOLOv8 (98.4% precision, 32ms latency).\n2. **FinSignal**: Financial sentiment analysis with FinBERT transformers (1.2M records/day).\n3. **PulseMetrics**: SaaS churn prediction model using XGBoost (40% churn reduction).\n4. **Synthetix**: Client-side ML diagnostic workbench using Next.js & D3.js.\n\nYou can click any project in the 03 / Projects section for the full case study!`;
+    return `Krishna has engineered 4 featured production systems:\n\n1. **AuraVision**: Real-time defect detection with PyTorch & YOLOv8 (98.4% precision, 32ms latency).\n2. **FinSignal**: Financial sentiment NLP engine using FinBERT (1.2M records/day).\n3. **PulseMetrics**: SaaS customer churn prediction with XGBoost (40% churn reduction).\n4. **Synthetix**: Client-side ML evaluation workbench in Next.js & D3.js.\n\nClick any card in the Work section to inspect the full case study!`;
   }
 
   // Availability / Hiring / Internships
   if (q.includes('available') || q.includes('intern') || q.includes('hire') || q.includes('job') || q.includes('role') || q.includes('open to') || q.includes('work with')) {
-    return `Yes! Krishna is actively available for full-time AI/ML engineering roles, machine learning internships, and collaborative research projects. You can reach out directly via email at ${aboutData.email}.`;
+    return `Yes! Krishna is actively open to full-time AI/ML engineering roles, machine learning internships, and collaborative research initiatives. Reach out directly via email at **${aboutData.email}**.`;
   }
 
   // Skills / Tech stack
   if (q.includes('skill') || q.includes('tech') || q.includes('stack') || q.includes('python') || q.includes('pytorch') || q.includes('language') || q.includes('tools')) {
-    return `Krishna's technical stack centers on practical machine learning and scalable data engineering:\n\n• **Core Languages**: Python, SQL (PostgreSQL), TypeScript, C++, R\n• **Machine Learning**: PyTorch, Scikit-learn, XGBoost, LightGBM, Hugging Face Transformers, OpenCV/YOLO, MLflow\n• **Data Analytics**: Pandas, NumPy, Tableau, Power BI, Statistical Modeling, PySpark\n• **Web & Cloud**: Next.js, FastAPI, Docker, Git, Linux, Supabase\n\nCheck out the interactive 02 / Skills Matrix to see where each technology was used!`;
+    return `Krishna's technical stack spans:\n\n• **Core Languages**: Python, SQL (PostgreSQL), TypeScript, C++, R\n• **Machine Learning**: PyTorch, Scikit-learn, XGBoost, Hugging Face Transformers, OpenCV/YOLO, TensorRT\n• **Data Analytics**: Pandas, NumPy, Tableau, Power BI, Statistical Modeling\n• **Web & Cloud**: Next.js, FastAPI, Docker, Git, Linux, Supabase\n\nExplore the interactive Skills Matrix on the page for context on each tool!`;
   }
 
   // Experience / Background
   if (q.includes('experience') || q.includes('background') || q.includes('work') || q.includes('lab') || q.includes('fellow')) {
-    return `Krishna's experience includes:\n\n1. **Machine Learning Intern** at Applied AI Research Labs (Jun 2024 — Present): Engineered transformer embedding pipelines and CI data drift monitoring.\n2. **Data Science Fellow** at Cognitive Data Initiative (Sep 2023 — May 2024): Built forecasting models over 2.4M records.\n3. **Undergraduate ML Researcher** at Center for Pattern Recognition (Jan 2023 — Aug 2023): Investigated LoRA fine-tuning and quantization.\n\nSee 04 / Experience for full details!`;
+    return `Krishna's experience highlights:\n\n1. **Machine Learning Intern** at Applied AI Research Labs (2024 — Present): Transformer embeddings and automated model drift testing.\n2. **Data Science Fellow** at Cognitive Data Initiative (2023 — 2024): Forecasting models over 2.4M records.\n3. **Undergraduate ML Researcher** at Center for Pattern Recognition (2023): LoRA fine-tuning and INT8 edge quantization.\n\nCheck the Experience section for detailed summaries.`;
   }
 
   // Education / College / Degree
   if (q.includes('education') || q.includes('college') || q.includes('degree') || q.includes('cgpa') || q.includes('university') || q.includes('study') || q.includes('school')) {
-    return `Krishna is pursuing a Bachelor of Technology in Computer Science & Engineering (2021 — 2025) with a strong CGPA of 8.9/10.0, specializing in machine learning, statistics, and algorithms.`;
+    return `Krishna is pursuing a Bachelor of Technology in Computer Science & Engineering (2021 — 2025) with a strong CGPA of 8.9/10.0, focusing on machine learning, algorithms, and distributed systems.`;
   }
 
   // Certifications
   if (q.includes('certif') || q.includes('coursera') || q.includes('google cloud') || q.includes('aws') || q.includes('credentials')) {
-    return `Krishna holds several verified certifications including Deep Learning Specialization (DeepLearning.AI), Google Cloud Machine Learning Engineer, and AWS Certified Machine Learning - Specialty.`;
+    return `Krishna holds verified industry certifications including Deep Learning Specialization (DeepLearning.AI), Google Cloud Machine Learning Engineer, and AWS Certified Machine Learning - Specialty.`;
   }
 
   // Contact / Email
   if (q.includes('contact') || q.includes('email') || q.includes('reach') || q.includes('linkedin') || q.includes('github') || q.includes('phone') || q.includes('message')) {
-    return `You can contact Krishna directly via email at **${aboutData.email}** (or copy it from the Contact section). You can also find him on GitHub at ${aboutData.github} and LinkedIn at ${aboutData.linkedin}.`;
+    return `You can get in touch with Krishna directly via email at **${aboutData.email}**. You can also connect on GitHub (${aboutData.github}) or LinkedIn (${aboutData.linkedin}).`;
   }
 
   // Location / Timezone
   if (q.includes('location') || q.includes('city') || q.includes('where') || q.includes('india') || q.includes('timezone')) {
-    return `Krishna is based in Bengaluru, India (${aboutData.location}) and works in the Asia/Kolkata timezone, open to remote and on-site opportunities worldwide.`;
+    return `Krishna is based in Bengaluru, India (${aboutData.location}) in the IST timezone (UTC+5:30), and is open to remote as well as on-site engineering roles worldwide.`;
   }
 
   // Resume
   if (q.includes('resume') || q.includes('cv')) {
-    return `You can download Krishna's complete resume PDF directly from the 06 / Resume section or via the command palette (Ctrl+K).`;
+    return `You can download Krishna's updated resume directly from the Resume section on this page or by triggering the command palette (Ctrl+K).`;
   }
 
-  // Fallback
-  return `I don't have that specific information in my portfolio database, but feel free to email Krishna directly at ${aboutData.email} and he will be delighted to answer!`;
+  return null;
+}
+
+// Universal Knowledge Engine: Fetches real-time factual knowledge for any question
+async function fetchGeneralKnowledge(query: string): Promise<string | null> {
+  try {
+    const cleanQuery = query.replace(/[?.,!]/g, '').trim();
+
+    // 1. Try Wikipedia REST summary API
+    const wikiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(cleanQuery)}`;
+    const wikiRes = await fetch(wikiUrl, {
+      headers: { 'User-Agent': 'KrishnaPortfolioAura/1.0 (contact: krishnasahu.dev@gmail.com)' },
+      next: { revalidate: 3600 },
+    });
+
+    if (wikiRes.ok) {
+      const data = await wikiRes.json();
+      if (data.extract) {
+        return data.extract;
+      }
+    }
+
+    // 2. Try DuckDuckGo Instant Answers API
+    const ddgUrl = `https://api.duckduckgo.com/?q=${encodeURIComponent(query)}&format=json&no_html=1&skip_disambig=1`;
+    const ddgRes = await fetch(ddgUrl, { next: { revalidate: 3600 } });
+    if (ddgRes.ok) {
+      const data = await ddgRes.json();
+      if (data.AbstractText) {
+        return data.AbstractText;
+      }
+      if (data.RelatedTopics && data.RelatedTopics.length > 0 && data.RelatedTopics[0].Text) {
+        return data.RelatedTopics[0].Text;
+      }
+    }
+  } catch (err) {
+    console.warn('General knowledge fetch failed:', err);
+  }
+  return null;
 }
 
 export async function POST(req: NextRequest) {
   try {
     const ip = req.headers.get('x-forwarded-for') || req.ip || 'anonymous';
-    
+
     // Rate Limiting
     if (!checkRateLimit(ip)) {
       return NextResponse.json(
@@ -133,11 +169,16 @@ export async function POST(req: NextRequest) {
                   role: 'user',
                   parts: [
                     {
-                      text: `You are Aura, the portfolio assistant for Krishna Sahu. Answer strictly using this data:\n${JSON.stringify(
-                        aboutData
-                      )}\n\nVisitor question: ${sanitizedMessage}\n\nGuidelines: Be polite, concise, professional, and confident. If asked something unknown, say you don't have that info and suggest emailing ${
-                        aboutData.email
-                      }.`,
+                      text: `You are Aura, an intelligent AI assistant embedded on Krishna Sahu's portfolio (Data Science & AI/ML Engineer).
+Here is Krishna's background data if relevant:
+${JSON.stringify(aboutData)}
+
+User question: "${sanitizedMessage}"
+
+Instructions:
+- You are a universal assistant: answer ANY question helpfully, accurately, and politely (including general knowledge, technology, coding, trivia, or definitions).
+- If the question is about Krishna, ground your response in his background.
+- If the question is general or unrelated to Krishna, answer the question directly and concisely without declining or restricting the user.`,
                     },
                   ],
                 },
@@ -154,7 +195,7 @@ export async function POST(req: NextRequest) {
           }
         }
       } catch (err) {
-        console.warn('Gemini API call failed, falling back to local matcher:', err);
+        console.warn('Gemini API call failed, continuing to fallback:', err);
       }
     } else if (openAiKey) {
       try {
@@ -169,9 +210,9 @@ export async function POST(req: NextRequest) {
             messages: [
               {
                 role: 'system',
-                content: `You are Aura, Krishna Sahu's portfolio assistant. Ground all answers strictly in this portfolio knowledge: ${JSON.stringify(
+                content: `You are Aura, an AI assistant on Krishna Sahu's portfolio. You answer all questions accurately and concisely. If asked about Krishna, refer to: ${JSON.stringify(
                   aboutData
-                )}. Keep answers concise and polite. If uncertain, suggest emailing ${aboutData.email}.`,
+                )}. If asked general questions, answer them clearly and helpfully.`,
               },
               { role: 'user', content: sanitizedMessage },
             ],
@@ -187,13 +228,26 @@ export async function POST(req: NextRequest) {
           }
         }
       } catch (err) {
-        console.warn('OpenAI API call failed, falling back to local matcher:', err);
+        console.warn('OpenAI API call failed, continuing to fallback:', err);
       }
     }
 
-    // Default high-precision embedded matcher
-    const answer = answerFromKnowledgeBase(sanitizedMessage);
-    return NextResponse.json({ reply: answer });
+    // 1. Check portfolio-grounded knowledge first
+    const portfolioAnswer = answerFromKnowledgeBase(sanitizedMessage);
+    if (portfolioAnswer) {
+      return NextResponse.json({ reply: portfolioAnswer });
+    }
+
+    // 2. For general knowledge queries (e.g., "jio", "what is machine learning", "python", "quantum computing"), fetch live factual knowledge
+    const generalAnswer = await fetchGeneralKnowledge(sanitizedMessage);
+    if (generalAnswer) {
+      return NextResponse.json({ reply: generalAnswer });
+    }
+
+    // 3. Conversational fallback (never hard-block)
+    return NextResponse.json({
+      reply: `I looked up "${sanitizedMessage}". You can ask me any question about technology, companies, concepts, or Krishna Sahu's machine learning projects, skills, and background! If you'd like to connect with Krishna, feel free to write to ${aboutData.email}.`,
+    });
   } catch (error) {
     console.error('Chat API Error:', error);
     return NextResponse.json(
@@ -202,4 +256,3 @@ export async function POST(req: NextRequest) {
     );
   }
 }
-
