@@ -2,9 +2,9 @@
 
 import React from 'react';
 import { PORTFOLIO_CONTENT } from '@/data/content';
-import { HeroStatusStrip } from './HeroStatusStrip';
 import { LivingDataCanvas } from './LivingDataCanvas';
-import { ArrowDownRight, ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
+
 
 interface HeroSectionProps {
   onOpenAiAssistant: () => void;
@@ -19,11 +19,6 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
       <LivingDataCanvas />
 
       <div className="relative z-10 flex flex-col items-start max-w-3xl">
-        {/* Status Strip */}
-        <div className="mb-8">
-          <HeroStatusStrip />
-        </div>
-
         {/* Identity & Role */}
         <div className="space-y-2 mb-6">
           <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl text-foreground font-normal tracking-tight leading-[1.05]">
