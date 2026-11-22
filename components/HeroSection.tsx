@@ -46,45 +46,51 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
           {hero.intro}
         </p>
 
-        {/* Clean Link Row (Inspired by jonathanc.in & abhayrajsingh.in) */}
-        <div className="flex flex-wrap items-center gap-x-6 gap-y-3 font-mono text-xs text-muted">
-          <a
-            href="#projects"
-            className="inline-flex items-center gap-1.5 text-foreground hover:text-accent font-medium transition-colors"
-          >
-            <span>Explore Work</span>
-            <ArrowDownRight className="w-3.5 h-3.5 text-accent" />
-          </a>
+        {/* Clean Link Structure: Primary CTA followed by Socials below */}
+        <div className="space-y-4 pt-2">
+          <div>
+            <a
+              href="#projects"
+              className="inline-flex items-center gap-1.5 text-foreground hover:text-accent font-mono text-xs font-medium transition-colors group"
+            >
+              <span>Explore Work</span>
+              <ArrowDownRight className="w-3.5 h-3.5 text-accent group-hover:translate-y-0.5 transition-transform" />
+            </a>
+          </div>
 
-          <span className="text-border">/</span>
+          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs text-muted">
+            <a
+              href={`mailto:${personal.email}`}
+              className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
+            >
+              <span>Email</span>
+              <ArrowUpRight className="w-3 h-3 text-muted" />
+            </a>
 
-          <a
-            href={`mailto:${personal.email}`}
-            className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
-          >
-            <span>Email</span>
-            <ArrowUpRight className="w-3 h-3 text-muted" />
-          </a>
+            <span className="text-border">·</span>
 
-          <a
-            href={personal.socials.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
-          >
-            <span>GitHub</span>
-            <ArrowUpRight className="w-3 h-3 text-muted" />
-          </a>
+            <a
+              href={personal.socials.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
+            >
+              <span>GitHub</span>
+              <ArrowUpRight className="w-3 h-3 text-muted" />
+            </a>
 
-          <a
-            href={personal.socials.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
-          >
-            <span>LinkedIn</span>
-            <ArrowUpRight className="w-3 h-3 text-muted" />
-          </a>
+            <span className="text-border">·</span>
+
+            <a
+              href={personal.socials.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
+            >
+              <span>LinkedIn</span>
+              <ArrowUpRight className="w-3 h-3 text-muted" />
+            </a>
+          </div>
         </div>
       </div>
     </section>
