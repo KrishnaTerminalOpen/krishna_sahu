@@ -155,9 +155,9 @@ export const PORTFOLIO_CONTENT = {
         problem: "Manual visual inspection suffered an 18% false-negative rate, causing expensive assembly line recalls and inconsistent quality audits.",
         approach: "Engineered a lightweight spatial-attention backbone with TensorRT quantization, trained on 45,000 augmented defect frames with sub-50ms constraints.",
         results: "Achieved 98.4% precision with 32ms inference latency per frame, reducing quality inspection overhead by 62%.",
-        imageUrl: "/projects/auravision.svg",
+        imageUrl: "/projects/spendwise.jpg",
         githubUrl: "https://github.com/krishnasahu/auravision",
-        liveUrl: "https://auravision-demo.vercel.app",
+        liveUrl: "https://myspendwise-app.vercel.app/dashboard",
       },
       {
         id: "finsignal",
