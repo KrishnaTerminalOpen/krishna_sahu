@@ -1,0 +1,74 @@
+{
+  "name": "Krishna Sahu",
+  "role": "Data Science & AI/ML Engineer",
+  "tagline": "I build practical, reliable machine learning products and modern data systems.",
+  "location": "Bengaluru, India",
+  "status": "Open to engineering roles & collaborations",
+  "email": "krishnasahu.dev@gmail.com",
+  "github": "https://github.com/krishnasahu",
+  "linkedin": "https://linkedin.com/in/krishnasahu",
+  "focus_areas": [
+    "Data Science",
+    "Machine Learning",
+    "Data Analytics",
+    "Web Development"
+  ],
+  "skills": {
+    "languages": ["Python", "SQL (PostgreSQL)", "TypeScript", "C++"],
+    "machine_learning": ["PyTorch", "Scikit-learn", "XGBoost", "YOLOv8", "Transformers"],
+    "analytics": ["Pandas", "NumPy", "Tableau", "Statistical Modeling"],
+    "web_and_cloud": ["Next.js", "FastAPI", "Docker", "Git", "GitHub Actions"]
+  },
+  "featured_projects": [
+    {
+      "name": "AuraVision",
+      "category": "Machine Learning",
+      "metric": "98.4% Precision · 32ms",
+      "summary": "Real-time edge defect detection pipeline with YOLOv8, PyTorch, and FastAPI."
+    },
+    {
+      "name": "FinSignal",
+      "category": "Data Science",
+      "metric": "84.2% F1 · 1.2M docs/day",
+      "summary": "Financial sentiment pipeline ingesting SEC filings and earnings call transcripts with FinBERT."
+    },
+    {
+      "name": "PulseMetrics",
+      "category": "Data Analytics",
+      "metric": "40% Churn Drop · AUC 0.91",
+      "summary": "Predictive B2B retention platform using survival analysis and gradient boosting on 68 behavioral features."
+    },
+    {
+      "name": "Synthetix",
+      "category": "Web Development",
+      "metric": "Sub-15ms · Pure Client-Side",
+      "summary": "Interactive model diagnostic workbench built with Next.js, D3.js, and WebAssembly."
+    }
+  ],
+  "experience": [
+    {
+      "role": "Machine Learning Intern",
+      "company": "Applied AI Research Labs",
+      "period": "2024 — Present",
+      "summary": "Transformer embedding pipelines, 27% retrieval gain, and Dockerized inference."
+    },
+    {
+      "role": "Data Science Fellow",
+      "company": "Cognitive Data Initiative",
+      "period": "2023 — 2024",
+      "summary": "Inventory forecasting over 2.4M records with 91.5% accuracy."
+    },
+    {
+      "role": "Undergraduate ML Researcher",
+      "company": "Center for Pattern Recognition",
+      "period": "2023",
+      "summary": "LoRA fine-tuning and INT8 edge quantization benchmarks."
+    }
+  ],
+  "education": {
+    "degree": "B.Tech in Computer Science & Engineering",
+    "institution": "Technological University",
+    "period": "2021 — 2025",
+    "grade": "CGPA 8.9 / 10.0"
+  }
+}
