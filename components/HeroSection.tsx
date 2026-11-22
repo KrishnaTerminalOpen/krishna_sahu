@@ -14,7 +14,7 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
   const { personal, hero } = PORTFOLIO_CONTENT;
 
   return (
-    <section className="relative min-h-[82vh] flex flex-col justify-center pt-36 sm:pt-40 md:pt-44 pb-20 overflow-hidden border-b border-border">
+    <section className="relative min-h-[80vh] flex flex-col justify-center pt-32 sm:pt-36 md:pt-38 pb-20 overflow-hidden border-b border-border">
       {/* Living Data Animated Canvas in Background */}
       <LivingDataCanvas />
 
