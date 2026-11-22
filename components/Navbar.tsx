@@ -3,21 +3,18 @@
 import React, { useState, useEffect } from 'react';
 import { PORTFOLIO_CONTENT } from '@/data/content';
 import { useTheme } from './ThemeProvider';
-import { Moon, Sun, Command, Menu, X } from 'lucide-react';
+import { Moon, Sun, Menu, X } from 'lucide-react';
 
 interface NavbarProps {
-  onOpenCommandPalette: () => void;
+  onOpenCommandPalette?: () => void;
 }
 
 export function Navbar({ onOpenCommandPalette }: NavbarProps) {
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [isMac, setIsMac] = useState(false);
 
   useEffect(() => {
-    setIsMac(typeof window !== 'undefined' && navigator.platform.toUpperCase().indexOf('MAC') >= 0);
-
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
     };
@@ -25,6 +22,7 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
 
   const navItems = [
     { label: 'About', href: '#about' },
@@ -69,24 +67,11 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
 
         {/* Actions */}
         <div className="flex items-center gap-2">
-          {/* Command Palette Button */}
-          <button
-            onClick={onOpenCommandPalette}
-            type="button"
-            className="flex items-center gap-1.5 border border-border bg-surface px-2.5 py-1 rounded text-xs font-mono text-muted hover:text-foreground hover:border-accent/40 transition-all"
-            title="Open Command Palette (Ctrl+K or ⌘K)"
-          >
-            <Command className="w-3 h-3 text-accent" />
-            <span className="hidden sm:inline font-mono text-[10px]">
-              {isMac ? '⌘K' : 'Ctrl K'}
-            </span>
-          </button>
-
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
             type="button"
-            className="p-1.5 rounded border border-border bg-surface text-muted hover:text-foreground hover:border-accent/40 transition-all"
+            className="p-1.5 rounded-lg border border-border bg-surface text-muted hover:text-foreground hover:border-accent/40 transition-all"
             aria-label="Toggle theme"
           >
             {theme === 'dark' ? (
@@ -95,6 +80,7 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
               <Moon className="w-3.5 h-3.5 text-neutral-700" />
             )}
           </button>
+
 
           {/* Mobile Menu Button */}
           <button
