@@ -85,6 +85,17 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
               <span>LinkedIn</span>
               <ArrowUpRight className="w-3 h-3 text-muted" />
             </a>
+
+            <span className="text-border">·</span>
+
+            <a
+              href={personal.resumePath}
+              download="Krishna_Sahu_Resume.pdf"
+              className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
+            >
+              <span>Resume</span>
+              <ArrowUpRight className="w-3 h-3 text-muted" />
+            </a>
           </div>
         </div>
       </div>
