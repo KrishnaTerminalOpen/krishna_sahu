@@ -80,30 +80,30 @@ export function ProjectsSection() {
             </div>
 
             {/* Main Content Layout (Architectural Split Dossier) */}
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-              {/* Left Column (5 cols): Refined, smaller typography & specs */}
-              <div className="lg:col-span-5 flex flex-col justify-between space-y-4">
-                <div className="space-y-2.5">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+              {/* Left Column (7 cols): Information, Architecture, Stack, and Actions */}
+              <div className="lg:col-span-7 flex flex-col justify-between space-y-5">
+                <div className="space-y-3">
                   <h3
                     onClick={() => setSelectedCaseStudy(project)}
-                    className="font-serif text-xl sm:text-2xl text-foreground font-normal tracking-tight group-hover:text-accent transition-colors cursor-pointer leading-snug flex items-baseline gap-2"
+                    className="font-serif text-2xl sm:text-3xl lg:text-4xl text-foreground font-normal tracking-tight group-hover:text-accent transition-colors cursor-pointer leading-tight flex items-baseline gap-2"
                   >
                     <span>{project.title}</span>
-                    <ArrowRight className="w-3.5 h-3.5 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-accent shrink-0" />
+                    <ArrowRight className="w-4 h-4 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all text-accent shrink-0" />
                   </h3>
 
-                  <p className="font-sans text-xs sm:text-[13px] text-muted font-light leading-relaxed">
+                  <p className="font-sans text-sm sm:text-base text-muted font-light leading-relaxed">
                     {project.summary}
                   </p>
 
                   {/* Clean Architecture Pipeline Tag */}
                   {project.architecture && (
                     <div className="pt-1">
-                      <div className="flex flex-wrap items-baseline gap-1.5 font-mono text-[11px] text-muted">
-                        <span className="text-accent text-[10px] font-medium tracking-wider uppercase shrink-0">
+                      <div className="flex flex-wrap items-center gap-2 font-mono text-xs text-muted">
+                        <span className="text-accent text-[11px] font-medium tracking-wider uppercase">
                           Architecture:
                         </span>
-                        <span className="text-foreground/85 font-light">
+                        <span className="text-foreground/90 font-light">
                           {project.architecture}
                         </span>
                       </div>
@@ -112,15 +112,15 @@ export function ProjectsSection() {
                 </div>
 
                 {/* Tech Pills */}
-                <div className="pt-0.5">
-                  <div className="font-mono text-[9px] uppercase tracking-wider text-subtle mb-1.5">
+                <div className="pt-1">
+                  <div className="font-mono text-[10px] uppercase tracking-wider text-subtle mb-2">
                     Production Stack
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {project.tech.map((t) => (
                       <span
                         key={t}
-                        className="px-2 py-0.5 rounded bg-surface-elevated/70 border border-border/60 font-mono text-[10px] text-muted"
+                        className="px-2.5 py-1 rounded-md bg-surface-elevated/70 border border-border/60 font-mono text-[11px] text-muted"
                       >
                         {t}
                       </span>
@@ -129,7 +129,7 @@ export function ProjectsSection() {
                 </div>
 
                 {/* Actions */}
-                <div className="pt-1.5 flex flex-wrap items-center gap-4 font-mono text-xs">
+                <div className="pt-2 flex flex-wrap items-center gap-4 font-mono text-xs">
                   <button
                     type="button"
                     onClick={() => setSelectedCaseStudy(project)}
@@ -167,32 +167,30 @@ export function ProjectsSection() {
                 </div>
               </div>
 
-              {/* Right Column (7 cols): Expanded Large System Viewport */}
-              <div className="lg:col-span-7 w-full">
+              {/* Right Column (5 cols): Embedded Architectural Viewport */}
+              <div className="lg:col-span-5 w-full">
                 <div
                   onClick={() => setSelectedCaseStudy(project)}
-                  className="relative group/viewport cursor-pointer rounded-xl overflow-hidden border border-border/90 bg-[#0d0e12] shadow-md hover:border-accent/60 transition-all duration-300"
+                  className="relative group/viewport cursor-pointer rounded-xl overflow-hidden border border-border/80 bg-[#0d0e12] shadow-sm hover:border-accent/50 transition-all duration-300"
                 >
                   {/* Viewport Header Bar */}
-                  <div className="flex items-center justify-between px-4 py-2 bg-[#14161c] border-b border-border/70 font-mono text-[10px] text-subtle">
+                  <div className="flex items-center justify-between px-3.5 py-2 bg-[#14161c] border-b border-border/60 font-mono text-[10px] text-subtle">
                     <div className="flex items-center gap-1.5">
                       <span className="w-2 h-2 rounded-full bg-border" />
                       <span className="w-2 h-2 rounded-full bg-border" />
                       <span className="w-2 h-2 rounded-full bg-border" />
                     </div>
-                    <span className="tracking-widest uppercase text-muted font-medium text-[9px]">SYSTEM VIEWPORT</span>
+                    <span className="tracking-widest uppercase text-muted font-medium">SYSTEM VIEW</span>
                   </div>
 
-                  {/* High-Resolution System Image Container */}
-                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0a0b0e]">
+                  {/* Image Container with Subtle Ambient Vignette */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-[#0c0d0f]">
                     {project.imageUrl ? (
                       <Image
                         src={project.imageUrl}
                         alt={project.title}
                         fill
-                        priority={idx === 0}
-                        sizes="(max-width: 768px) 100vw, 650px"
-                        className="object-cover object-top transition-transform duration-500 ease-out group-hover/viewport:scale-[1.02]"
+                        className="object-cover object-top transition-transform duration-500 ease-out group-hover/viewport:scale-[1.03]"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-subtle font-mono text-xs">
@@ -200,14 +198,14 @@ export function ProjectsSection() {
                       </div>
                     )}
 
-                    {/* Gentle Vignette Overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0d0e12]/50 via-transparent to-transparent pointer-events-none" />
+                    {/* Gradient Overlay for Editorial Depth */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0d0e12]/80 via-transparent to-transparent pointer-events-none" />
 
                     {/* Hover Inspect Pill */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/viewport:opacity-100 transition-opacity duration-200 bg-background/20 backdrop-blur-[2px]">
-                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface/95 text-foreground font-mono text-xs border border-border shadow-lg">
+                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/viewport:opacity-100 transition-opacity duration-200 bg-background/30 backdrop-blur-[2px]">
+                      <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface text-foreground font-mono text-xs border border-border/80 shadow-md">
                         <Eye className="w-3.5 h-3.5 text-accent" />
-                        <span>Inspect Interface</span>
+                        <span>Inspect Architecture</span>
                       </span>
                     </div>
                   </div>
