@@ -14,20 +14,20 @@ export function GlobalParticlesBackground() {
       aria-hidden="true"
     >
       <Particles
-        particleColors={isLight ? ['#1f242d', '#717682', '#966336'] : ['#e0a369', '#d48c48', '#888e99', '#ffffff']}
-        particleCount={110}
-        particleSpread={11}
-        speed={0.07}
-        particleBaseSize={70}
-        sizeRandomness={0.85}
-        glow={isLight ? 0.2 : 0.45}
-        twinkle={0.25}
+        particleColors={isLight ? ['#24272e', '#4f5563', '#a36d3c', '#000000'] : ['#ffffff', '#e2a76f', '#cca073', '#949ba8']}
+        particleCount={200}
+        particleSpread={12}
+        speed={0.12}
+        particleBaseSize={100}
+        sizeRandomness={1}
+        glow={0.6}
+        twinkle={0.35}
         moveParticlesOnHover={true}
         hoverEffect="parallax"
-        particleHoverFactor={0.65}
-        cameraDistance={22}
-        alphaParticles={true}
-        opacity={isLight ? 0.35 : 0.55}
+        particleHoverFactor={1}
+        cameraDistance={20}
+        alphaParticles={false}
+        opacity={isLight ? 0.6 : 0.85}
         lightMode={isLight}
         className="w-full h-full"
       />

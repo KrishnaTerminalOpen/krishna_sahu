@@ -15,9 +15,6 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
 
   return (
     <section className="relative min-h-[80vh] flex flex-col justify-center pt-32 sm:pt-36 md:pt-38 pb-20 overflow-hidden border-b border-border">
-      {/* Living Data Animated Canvas in Background */}
-      <LivingDataCanvas />
-
       <div className="relative z-10 flex flex-col items-start max-w-3xl">
         {/* Mobile-Only Location & Live Clock (Displays only on screens where navbar hides it) */}
         <HeroStatusStrip />
