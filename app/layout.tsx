@@ -4,6 +4,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { CustomCursor } from '@/components/CustomCursor';
 import { ScrollProgressBar } from '@/components/ScrollProgressBar';
+import { GlobalParticlesBackground } from '@/components/GlobalParticlesBackground';
 import { PORTFOLIO_CONTENT } from '@/data/content';
 
 const serifFont = Fraunces({
@@ -104,6 +105,7 @@ export default function RootLayout({
           <CustomCursor />
 
           {/* Page Structure */}
+          <GlobalParticlesBackground />
           {children}
         </ThemeProvider>
       </body>

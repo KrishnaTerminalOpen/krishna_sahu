@@ -50,21 +50,21 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
         </a>
 
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-7 font-mono text-xs tracking-wider text-muted">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="hover:text-foreground hover:text-accent transition-colors"
-            >
-              {item.label}
-            </a>
-          ))}
-        </nav>
+        {/* Right side: Navigation Items directly to the left of the Theme Toggle */}
+        <div className="flex items-center gap-7">
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center gap-6 font-mono text-xs tracking-wider uppercase text-muted">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="hover:text-foreground hover:text-accent transition-colors"
+              >
+                {item.label}
+              </a>
+            ))}
+          </nav>
 
-        {/* Actions */}
-        <div className="flex items-center gap-2">
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
@@ -78,9 +78,6 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
               <Moon className="w-3.5 h-3.5 text-neutral-700" />
             )}
           </button>
-
-
-
 
           {/* Mobile Menu Button */}
           <button
