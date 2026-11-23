@@ -42,19 +42,11 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
         {/* Brand */}
         <a
           href="#"
-          className="group flex items-center gap-2.5 focus:outline-none"
+          className="group flex items-center focus:outline-none"
         >
-          {/* Distinctive 'K' Monogram Logo matching editorial palette */}
-          <span className="w-6 h-6 rounded-md border border-accent/40 bg-surface flex items-center justify-center font-serif text-xs font-semibold text-accent shadow-xs group-hover:border-accent group-hover:bg-accent/10 transition-all">
-            K
+          <span className="font-serif text-lg tracking-tight text-foreground group-hover:text-accent transition-colors">
+            {PORTFOLIO_CONTENT.personal.name}
           </span>
-
-          <div className="flex items-baseline gap-1.5">
-            <span className="font-serif text-lg tracking-tight text-foreground group-hover:text-accent transition-colors">
-              {PORTFOLIO_CONTENT.personal.name}
-            </span>
-            <span className="font-mono text-[10px] text-accent">/ ml</span>
-          </div>
         </a>
 
 
