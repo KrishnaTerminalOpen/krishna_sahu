@@ -25,12 +25,10 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
 
 
   const navItems = [
-    { label: 'About', href: '#about' },
-    { label: 'Skills', href: '#skills' },
     { label: 'Work', href: '#projects' },
-    { label: 'Experience', href: '#experience' },
     { label: 'Contact', href: '#contact' },
   ];
+
 
   return (
     <header
