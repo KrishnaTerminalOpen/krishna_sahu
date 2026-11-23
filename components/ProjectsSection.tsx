@@ -7,6 +7,7 @@ import { SectionHeader } from './SectionHeader';
 import { CaseStudyModal } from './CaseStudyModal';
 import { ArrowUpRight, Github, ExternalLink, Sparkles, ArrowRight, Eye } from 'lucide-react';
 import ScrollStack, { ScrollStackItem } from './ScrollStack';
+import BorderGlow from './BorderGlow';
 
 
 export function ProjectsSection() {
@@ -68,9 +69,21 @@ export function ProjectsSection() {
         >
           {filteredProjects.map((project, idx) => (
             <ScrollStackItem key={project.id} itemClassName="rounded-2xl">
-              <article
-                className="group rounded-2xl border border-border/80 bg-surface/95 backdrop-blur-md p-7 sm:p-9 hover:border-accent/40 transition-all duration-300 shadow-md"
+              <BorderGlow
+                borderRadius={16}
+                edgeSensitivity={32}
+                glowRadius={36}
+                glowIntensity={1.2}
+                coneSpread={28}
+                glowColor="38 85 62"
+                backgroundColor="var(--color-surface, #121316)"
+                colors={['#d4924b', '#e6a86c', '#9e622b']}
+                fillOpacity={0.25}
+                className="w-full rounded-2xl"
               >
+                <article
+                  className="group rounded-2xl border border-border/80 bg-surface/95 backdrop-blur-md p-7 sm:p-9 hover:border-accent/40 transition-all duration-300 shadow-md w-full"
+                >
             {/* Top Ribbon */}
             <div className="flex flex-wrap items-center justify-between gap-3 mb-6 font-mono text-xs">
               <div className="flex items-center gap-2 text-muted">
@@ -226,8 +239,9 @@ export function ProjectsSection() {
               </div>
             </div>
           </article>
-        </ScrollStackItem>
-      ))}
+        </BorderGlow>
+      </ScrollStackItem>
+    ))}
         </ScrollStack>
       </div>
 
