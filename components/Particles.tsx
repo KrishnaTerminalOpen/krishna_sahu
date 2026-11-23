@@ -447,7 +447,10 @@ export const Particles: React.FC<ParticlesProps> = ({
         probe.fillStyle = '#ffffff';
         probe.fillStyle = value;
         probe.fillRect(0, 0, 1, 1);
-        const [r, g, b] = probe.getImageData(0, 0, 1, 1).data;
+        const data = probe.getImageData(0, 0, 1, 1).data;
+        const r = data[0];
+        const g = data[1];
+        const b = data[2];
         rgb = [r / 255, g / 255, b / 255];
       }
       cache.set(value, rgb);
@@ -651,7 +654,7 @@ export const Particles: React.FC<ParticlesProps> = ({
       }
       let lineCount = 0;
       const limit = reach * reach;
-      for (const [key, members] of buckets) {
+      Array.from(buckets.entries()).forEach(([key, members]) => {
         for (const offset of [0, 1, columns - 1, columns, columns + 1]) {
           const others = offset === 0 ? members : buckets.get(key + offset);
           if (!others) continue;
@@ -665,7 +668,7 @@ export const Particles: React.FC<ParticlesProps> = ({
               if (gap > limit) continue;
               const layer = clamp(1 - Math.abs(screen.ahead[i] - screen.ahead[j]) / 18, 0, 1);
               if (layer <= 0) continue;
-              if (lineCount >= MAX_LINES) return lineCount;
+              if (lineCount >= MAX_LINES) return;
               const fade = 1 - Math.sqrt(gap) / reach;
               const base = lineCount * 8;
               lineData[base] = screen.x[i];
@@ -680,7 +683,7 @@ export const Particles: React.FC<ParticlesProps> = ({
             }
           }
         }
-      }
+      });
       return lineCount;
     };
 
