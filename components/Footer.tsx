@@ -13,7 +13,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="py-12 border-t border-border mt-12">
+    <footer className="py-12">
       <div className="flex items-center justify-between gap-4 font-mono text-xs text-muted">
         {/* Left: Year & Name */}
         <div className="flex items-center gap-2">

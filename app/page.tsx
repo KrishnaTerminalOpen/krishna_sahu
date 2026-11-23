@@ -8,7 +8,6 @@ import { SkillsMatrix } from '@/components/SkillsMatrix';
 import { ProjectsSection } from '@/components/ProjectsSection';
 import { ExperienceTimeline } from '@/components/ExperienceTimeline';
 import { CertificationsSection } from '@/components/CertificationsSection';
-import { ResumeSection } from '@/components/ResumeSection';
 import { ContactSection } from '@/components/ContactSection';
 import { Footer } from '@/components/Footer';
 import { CommandPalette } from '@/components/CommandPalette';
@@ -55,10 +54,7 @@ export default function Home() {
         {/* 05 / Certifications */}
         <CertificationsSection />
 
-        {/* 06 / Resume */}
-        <ResumeSection />
-
-        {/* 07 / Contact */}
+        {/* 06 / Contact */}
         <ContactSection onCopyEmail={handleCopyEmail} />
 
         {/* Editorial Footer */}

@@ -306,9 +306,9 @@ export const PORTFOLIO_CONTENT = {
     downloadLabel: "Download Resume (PDF)",
   },
 
-  // 07 / Contact (Clean & direct)
+  // 06 / Contact (Clean & direct)
   contact: {
-    sectionNumber: "07",
+    sectionNumber: "06",
     sectionTitle: "Contact",
     prompt: "Hiring, building something, or have a question? Email gets the quickest reply.",
   },
