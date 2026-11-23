@@ -30,24 +30,26 @@ export function HeroStatusStrip() {
   }, []);
 
   return (
-    <div className="inline-flex flex-wrap items-center gap-2.5 border border-border/80 bg-surface/80 backdrop-blur-md px-3.5 py-1.5 rounded-full font-mono text-xs text-muted shadow-xs mb-6">
-      <span className="relative flex h-2 w-2 shrink-0">
+    <div className="inline-flex items-center gap-1.5 sm:gap-2.5 border border-border/80 bg-surface/80 backdrop-blur-md px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full font-mono text-[9px] sm:text-xs text-muted shadow-xs mb-6 whitespace-nowrap overflow-x-auto max-w-full no-scrollbar">
+      <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2 shrink-0">
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+        <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-emerald-500"></span>
       </span>
-      <span className="text-foreground/90 font-medium tracking-tight text-[11px] sm:text-xs">
-        {PORTFOLIO_CONTENT.personal.statusText}
+      <span className="text-foreground/90 font-medium tracking-tight truncate">
+        {/* Shorten slightly on ultra-small mobile screens to ensure strict 1-line fit */}
+        <span className="xs:hidden sm:hidden">Available for roles</span>
+        <span className="hidden xs:inline sm:inline">{PORTFOLIO_CONTENT.personal.statusText}</span>
       </span>
 
       {/* Location and Live IST Time */}
-      <div className="flex items-center gap-2 pl-2 border-l border-border/70 text-[10px] sm:text-[11px] text-muted">
+      <div className="flex items-center gap-1 sm:gap-2 pl-1.5 sm:pl-2 border-l border-border/70 text-[9px] sm:text-[11px] text-muted shrink-0">
         <div className="flex items-center gap-1">
-          <MapPin className="w-3 h-3 text-accent shrink-0" />
+          <MapPin className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-accent shrink-0" />
           <span>{PORTFOLIO_CONTENT.personal.location}</span>
         </div>
         <span className="text-border">/</span>
         <div className="flex items-center gap-1">
-          <Clock className="w-3 h-3 text-accent shrink-0" />
+          <Clock className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-accent shrink-0" />
           <span suppressHydrationWarning className="tabular-nums text-foreground/90">
             {timeString || '12:00:00 PM'} IST
           </span>
