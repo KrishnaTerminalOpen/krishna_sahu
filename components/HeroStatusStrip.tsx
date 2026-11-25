@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { PORTFOLIO_CONTENT } from '@/data/content';
+import { PORTFOLIO_CONTENT } from '@/data/portfolio';
 import { Clock, MapPin } from 'lucide-react';
 
 export function HeroStatusStrip() {
@@ -30,14 +30,14 @@ export function HeroStatusStrip() {
   }, []);
 
   return (
-    <div className="inline-flex items-center gap-1.5 sm:gap-2.5 border border-border/80 bg-surface/80 backdrop-blur-md px-2.5 sm:px-3.5 py-1 sm:py-1.5 rounded-full font-mono text-[9px] sm:text-xs text-muted shadow-xs mb-6 whitespace-nowrap overflow-x-auto max-w-full no-scrollbar">
+    <div className="inline-flex items-center gap-1.5 sm:gap-2.5 font-mono text-[9px] sm:text-xs text-muted mb-6 whitespace-nowrap overflow-x-auto max-w-full no-scrollbar">
       <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2 shrink-0">
         <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
         <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-emerald-500"></span>
       </span>
       <span className="text-foreground/90 font-medium tracking-tight truncate">
         {/* Shorten slightly on ultra-small mobile screens to ensure strict 1-line fit */}
-        <span className="xs:hidden sm:hidden">Available for roles</span>
+        <span className="xs:hidden sm:hidden">{PORTFOLIO_CONTENT.personal.mobileStatusText}</span>
         <span className="hidden xs:inline sm:inline">{PORTFOLIO_CONTENT.personal.statusText}</span>
       </span>
 
@@ -51,7 +51,7 @@ export function HeroStatusStrip() {
         <div className="flex items-center gap-1">
           <Clock className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-accent shrink-0" />
           <span suppressHydrationWarning className="tabular-nums text-foreground/90">
-            {timeString || '12:00:00 PM'} IST
+            {timeString || PORTFOLIO_CONTENT.personal.defaultTimeFallback} {PORTFOLIO_CONTENT.personal.timezoneLabel}
           </span>
         </div>
       </div>
