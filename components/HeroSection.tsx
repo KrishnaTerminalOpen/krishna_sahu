@@ -4,7 +4,7 @@ import React from 'react';
 import { PORTFOLIO_CONTENT } from '@/data/portfolio';
 import { HeroStatusStrip } from './HeroStatusStrip';
 import { LivingDataCanvas } from './LivingDataCanvas';
-import { ArrowDownRight, ArrowUpRight, Sparkles } from 'lucide-react';
+import { ArrowRight, Download, Github, Linkedin, Mail } from 'lucide-react';
 
 interface HeroSectionProps {
   onOpenAiAssistant: () => void;
@@ -41,61 +41,61 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
           {hero.intro}
         </p>
 
-        {/* Clean Link Structure: Primary CTA followed by Socials below */}
+        {/* Primary CTA followed by pill action buttons in same position */}
         <div className="space-y-4 pt-2">
           <div>
             <a
               href="#projects"
-              className="inline-flex items-center gap-1.5 text-foreground hover:text-accent font-mono text-xs font-medium transition-colors group"
+              className="group inline-flex items-center gap-3 pl-5 pr-2.5 py-2 rounded-full bg-accent text-background font-mono text-xs font-medium shadow-md hover:bg-accent-hover hover:-translate-y-0.5 transition-all duration-200"
             >
               <span>{hero.ctaLabel}</span>
-              <ArrowDownRight className="w-3.5 h-3.5 text-accent group-hover:translate-y-0.5 transition-transform" />
+              <span className="w-6 h-6 rounded-full bg-background/15 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
+                <ArrowRight className="w-3.5 h-3.5 text-background" />
+              </span>
             </a>
           </div>
 
-          <div className="flex flex-wrap items-center gap-x-5 gap-y-2 font-mono text-xs text-muted">
-            <a
-              href={`mailto:${personal.email}`}
-              className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
-            >
-              <span>{hero.links.email}</span>
-              <ArrowUpRight className="w-3 h-3 text-muted" />
-            </a>
-
-            <span className="text-border">·</span>
-
-            <a
-              href={personal.socials.github}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
-            >
-              <span>{hero.links.github}</span>
-              <ArrowUpRight className="w-3 h-3 text-muted" />
-            </a>
-
-            <span className="text-border">·</span>
-
-            <a
-              href={personal.socials.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
-            >
-              <span>{hero.links.linkedin}</span>
-              <ArrowUpRight className="w-3 h-3 text-muted" />
-            </a>
-
-            <span className="text-border">·</span>
-
-            <a
-              href={personal.resumePath}
-              download={personal.resumeFileName}
-              className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
-            >
-              <span>{hero.links.resume}</span>
-              <ArrowUpRight className="w-3 h-3 text-muted" />
-            </a>
+          <div className="flex flex-wrap items-center gap-2.5 font-mono text-xs">
+            {[
+              {
+                label: hero.links.email,
+                href: `mailto:${personal.email}`,
+                icon: Mail,
+              },
+              {
+                label: hero.links.github,
+                href: personal.socials.github,
+                icon: Github,
+                external: true,
+              },
+              {
+                label: hero.links.linkedin,
+                href: personal.socials.linkedin,
+                icon: Linkedin,
+                external: true,
+              },
+              {
+                label: hero.links.resume,
+                href: personal.resumePath,
+                icon: Download,
+                download: personal.resumeFileName,
+              },
+            ].map((btn) => {
+              const Icon = btn.icon;
+              return (
+                <a
+                  key={btn.label}
+                  href={btn.href}
+                  target={btn.external ? '_blank' : undefined}
+                  rel={btn.external ? 'noopener noreferrer' : undefined}
+                  download={btn.download}
+                  className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-surface/90 text-foreground hover:bg-accent hover:border-accent hover:text-background hover:-translate-y-0.5 transition-all duration-200 shadow-xs"
+                >
+                  <Icon className="w-3.5 h-3.5 text-accent group-hover:text-background transition-colors" />
+                  <span>{btn.label}</span>
+                </a>
+              );
+            })}
           </div>
         </div>
       </div>
