@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { PORTFOLIO_CONTENT } from '@/data/content';
+import { PORTFOLIO_CONTENT } from '@/data/portfolio';
 import { SectionHeader } from './SectionHeader';
 import { Counter } from './Counter';
 

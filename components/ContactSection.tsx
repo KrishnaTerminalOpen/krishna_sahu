@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { PORTFOLIO_CONTENT } from '@/data/content';
+import { PORTFOLIO_CONTENT } from '@/data/portfolio';
 import { SectionHeader } from './SectionHeader';
 import { Copy, Check, ArrowUpRight, Send } from 'lucide-react';
 import confetti from 'canvas-confetti';
@@ -12,6 +12,7 @@ interface ContactSectionProps {
 
 export function ContactSection({ onCopyEmail }: ContactSectionProps) {
   const { contact, personal } = PORTFOLIO_CONTENT;
+  const heroLinksLabel = (handle: string, platform: string) => `${platform} · ${handle}`;
   const [copied, setCopied] = useState(false);
   const [isSending, setIsSending] = useState(false);
   const [sent, setSent] = useState(false);
@@ -77,12 +78,12 @@ export function ContactSection({ onCopyEmail }: ContactSectionProps) {
             {copied ? (
               <>
                 <Check className="w-3.5 h-3.5 text-accent" />
-                <span className="text-accent">Copied</span>
+                <span className="text-accent">{contact.copiedLabel}</span>
               </>
             ) : (
               <>
                 <Copy className="w-3.5 h-3.5" />
-                <span>Copy</span>
+                <span>{contact.copyLabel}</span>
               </>
             )}
           </button>
@@ -96,7 +97,7 @@ export function ContactSection({ onCopyEmail }: ContactSectionProps) {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
           >
-            <span>GitHub &middot; @krishnasahu</span>
+            <span>{heroLinksLabel(personal.socials.githubHandle, 'GitHub')}</span>
             <ArrowUpRight className="w-3 h-3 text-muted" />
           </a>
 
@@ -108,7 +109,7 @@ export function ContactSection({ onCopyEmail }: ContactSectionProps) {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
           >
-            <span>LinkedIn &middot; krishna-sahu</span>
+            <span>{heroLinksLabel(personal.socials.linkedinHandle, 'LinkedIn')}</span>
             <ArrowUpRight className="w-3 h-3 text-muted" />
           </a>
 
@@ -119,7 +120,7 @@ export function ContactSection({ onCopyEmail }: ContactSectionProps) {
             type="button"
             className="text-subtle hover:text-accent transition-colors"
           >
-            {showDirectForm ? "Hide form" : "Leave a note here →"}
+            {showDirectForm ? contact.hideFormLabel : contact.showFormLabel}
           </button>
         </div>
 
@@ -128,7 +129,7 @@ export function ContactSection({ onCopyEmail }: ContactSectionProps) {
           <div className="pt-6 border-t border-border mt-6">
             {sent ? (
               <div className="p-4 rounded-lg bg-surface border border-accent/30 text-xs font-mono text-accent animate-fade-in">
-                Note received. Thank you! I will reply to {personal.email} soon.
+                {contact.noteSuccessPrefix} {personal.email} {contact.noteSuccessSuffix}
               </div>
             ) : (
               <form onSubmit={handleFormSubmit} className="space-y-3 font-sans">
@@ -138,7 +139,7 @@ export function ContactSection({ onCopyEmail }: ContactSectionProps) {
                     required
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    placeholder="Your name"
+                    placeholder={contact.namePlaceholder}
                     className="w-full px-3 py-2 rounded-md border border-border bg-surface text-xs text-foreground focus:outline-none focus:border-accent"
                   />
                   <input
@@ -146,7 +147,7 @@ export function ContactSection({ onCopyEmail }: ContactSectionProps) {
                     required
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    placeholder="Your email"
+                    placeholder={contact.emailPlaceholder}
                     className="w-full px-3 py-2 rounded-md border border-border bg-surface text-xs text-foreground focus:outline-none focus:border-accent"
                   />
                 </div>
@@ -155,7 +156,7 @@ export function ContactSection({ onCopyEmail }: ContactSectionProps) {
                   required
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  placeholder="Your message..."
+                  placeholder={contact.messagePlaceholder}
                   className="w-full px-3 py-2 rounded-md border border-border bg-surface text-xs text-foreground focus:outline-none focus:border-accent"
                 />
                 <button
@@ -164,7 +165,7 @@ export function ContactSection({ onCopyEmail }: ContactSectionProps) {
                   className="inline-flex items-center gap-1.5 px-4 py-2 rounded-md bg-foreground text-background font-mono text-xs hover:opacity-90 transition-opacity"
                 >
                   <Send className="w-3 h-3" />
-                  <span>{isSending ? "Sending..." : "Send note"}</span>
+                  <span>{isSending ? contact.sendingLabel : contact.sendLabel}</span>
                 </button>
               </form>
             )}

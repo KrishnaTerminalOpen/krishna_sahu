@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { PORTFOLIO_CONTENT, SkillItem } from '@/data/content';
+import { PORTFOLIO_CONTENT, SkillItem } from '@/data/portfolio';
 import { SectionHeader } from './SectionHeader';
 
 export function SkillsMatrix() {

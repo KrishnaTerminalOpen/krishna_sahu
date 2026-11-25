@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { PORTFOLIO_CONTENT } from '@/data/content';
+import { PORTFOLIO_CONTENT } from '@/data/portfolio';
 import { SectionHeader } from './SectionHeader';
 import { Download, ArrowUpRight } from 'lucide-react';
 
@@ -28,7 +28,7 @@ export function ResumeSection() {
         <div className="flex items-center gap-6 font-mono text-xs shrink-0">
           <a
             href={personal.resumePath}
-            download="Krishna_Sahu_Resume.pdf"
+            download={personal.resumeFileName}
             className="inline-flex items-center gap-1.5 text-foreground hover:text-accent font-medium transition-colors"
           >
             <Download className="w-3.5 h-3.5 text-accent" />
@@ -41,7 +41,7 @@ export function ResumeSection() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-muted hover:text-foreground transition-colors"
           >
-            <span>View PDF</span>
+            <span>{resume.viewPdfLabel}</span>
             <ArrowUpRight className="w-3 h-3 text-muted" />
           </a>
         </div>

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { PORTFOLIO_CONTENT } from '@/data/content';
+import { PORTFOLIO_CONTENT } from '@/data/portfolio';
 import { useTheme } from './ThemeProvider';
 import { 
   Search, 
@@ -233,6 +233,7 @@ export function CommandPalette({
             onClick={onClose}
             type="button"
             className="text-muted hover:text-foreground text-xs font-mono ml-2 p-1"
+            aria-label="Close command menu"
           >
             <X className="w-4 h-4" />
           </button>

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { PORTFOLIO_CONTENT } from '@/data/content';
+import { PORTFOLIO_CONTENT } from '@/data/portfolio';
 import { HeroStatusStrip } from './HeroStatusStrip';
 import { LivingDataCanvas } from './LivingDataCanvas';
 import { ArrowDownRight, ArrowUpRight, Sparkles } from 'lucide-react';
@@ -45,7 +45,7 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
               href="#projects"
               className="inline-flex items-center gap-1.5 text-foreground hover:text-accent font-mono text-xs font-medium transition-colors group"
             >
-              <span>Explore Work</span>
+              <span>{hero.ctaLabel}</span>
               <ArrowDownRight className="w-3.5 h-3.5 text-accent group-hover:translate-y-0.5 transition-transform" />
             </a>
           </div>
@@ -55,7 +55,7 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
               href={`mailto:${personal.email}`}
               className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
             >
-              <span>Email</span>
+              <span>{hero.links.email}</span>
               <ArrowUpRight className="w-3 h-3 text-muted" />
             </a>
 
@@ -67,7 +67,7 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
             >
-              <span>GitHub</span>
+              <span>{hero.links.github}</span>
               <ArrowUpRight className="w-3 h-3 text-muted" />
             </a>
 
@@ -79,7 +79,7 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
             >
-              <span>LinkedIn</span>
+              <span>{hero.links.linkedin}</span>
               <ArrowUpRight className="w-3 h-3 text-muted" />
             </a>
 
@@ -87,10 +87,10 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
 
             <a
               href={personal.resumePath}
-              download="Krishna_Sahu_Resume.pdf"
+              download={personal.resumeFileName}
               className="inline-flex items-center gap-1 hover:text-foreground transition-colors"
             >
-              <span>Resume</span>
+              <span>{hero.links.resume}</span>
               <ArrowUpRight className="w-3 h-3 text-muted" />
             </a>
           </div>

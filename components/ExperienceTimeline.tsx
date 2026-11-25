@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useRef } from 'react';
-import { PORTFOLIO_CONTENT } from '@/data/content';
+import { PORTFOLIO_CONTENT } from '@/data/portfolio';
 import { SectionHeader } from './SectionHeader';
 import { motion, useScroll, useTransform } from 'framer-motion';
 

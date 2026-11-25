@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { PORTFOLIO_CONTENT } from '@/data/content';
+import { PORTFOLIO_CONTENT } from '@/data/portfolio';
 import { useTheme } from './ThemeProvider';
 import { Moon, Sun, Menu, X } from 'lucide-react';
 
@@ -24,10 +24,7 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
   }, []);
 
 
-  const navItems = [
-    { label: 'Work', href: '#projects' },
-    { label: 'Contact', href: '#contact' },
-  ];
+  const navItems = PORTFOLIO_CONTENT.nav.items;
 
 
   return (

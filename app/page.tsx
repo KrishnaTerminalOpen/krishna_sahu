@@ -13,12 +13,16 @@ import { Footer } from '@/components/Footer';
 import { CommandPalette } from '@/components/CommandPalette';
 import { AiAssistantModal } from '@/components/AiAssistantModal';
 import { AiAssistantTrigger } from '@/components/AiAssistantTrigger';
-import { PORTFOLIO_CONTENT } from '@/data/content';
+import type { AuraVoiceState } from '@/hooks/useAuraVoice';
+import { PORTFOLIO_CONTENT } from '@/data/portfolio';
 import { Check } from 'lucide-react';
 
 export default function Home() {
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
   const [isAiAssistantOpen, setIsAiAssistantOpen] = useState(false);
+  const [isAuraVoiceMode, setIsAuraVoiceMode] = useState(false);
+  const [auraVoiceState, setAuraVoiceState] = useState<AuraVoiceState>('IDLE');
+  const [auraInterruptSignal, setAuraInterruptSignal] = useState(0);
   const [showToast, setShowToast] = useState(false);
 
   const handleCopyEmail = () => {
@@ -62,10 +66,25 @@ export default function Home() {
       </main>
 
       {/* Floating AI Assistant Trigger & Drawer */}
-      <AiAssistantTrigger onOpen={() => setIsAiAssistantOpen(true)} />
+      <AiAssistantTrigger
+        onOpen={() => {
+          if (auraVoiceState === 'SPEAKING') {
+            setAuraInterruptSignal((n) => n + 1);
+          }
+          setIsAiAssistantOpen(true);
+        }}
+        isVoiceMode={isAuraVoiceMode}
+        voiceState={auraVoiceState}
+      />
       <AiAssistantModal
         isOpen={isAiAssistantOpen}
+        onOpen={() => setIsAiAssistantOpen(true)}
         onClose={() => setIsAiAssistantOpen(false)}
+        onVoiceStateChange={(active, state) => {
+          setIsAuraVoiceMode(active);
+          setAuraVoiceState(state);
+        }}
+        interruptSignal={auraInterruptSignal}
       />
 
       {/* Command Palette (Ctrl+K) */}
@@ -82,7 +101,7 @@ export default function Home() {
           <div className="p-1 rounded-full bg-accent/20 text-accent">
             <Check className="w-3.5 h-3.5" />
           </div>
-          <span>Email copied to clipboard!</span>
+          <span>{PORTFOLIO_CONTENT.contact.copiedToast}</span>
         </div>
       )}
     </div>

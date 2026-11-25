@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { PORTFOLIO_CONTENT } from '@/data/content';
+import { PORTFOLIO_CONTENT } from '@/data/portfolio';
 import { ArrowUp } from 'lucide-react';
 
 export function Footer() {
@@ -27,7 +27,7 @@ export function Footer() {
           className="flex items-center gap-1.5 text-foreground hover:text-accent transition-colors p-1"
           aria-label="Back to top"
         >
-          <span>Top</span>
+          <span>{footer.backToTopLabel}</span>
           <ArrowUp className="w-3.5 h-3.5" />
         </button>
       </div>
