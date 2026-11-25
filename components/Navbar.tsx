@@ -29,10 +29,10 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 backdrop-blur-md border-b ${
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
         isScrolled
-          ? 'bg-background/95 border-border py-3 shadow-sm'
-          : 'bg-background/80 border-border/70 py-4'
+          ? 'bg-background/85 backdrop-blur-md border-b border-border py-3 shadow-xs'
+          : 'bg-transparent py-5'
       }`}
     >
       <div className="max-w-editorial mx-auto px-6 flex items-center justify-between">
@@ -41,7 +41,7 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
           href="#"
           className="group flex items-center focus:outline-none"
         >
-          <span className="font-serif text-lg font-semibold tracking-tight text-foreground group-hover:text-accent transition-colors">
+          <span className="font-serif text-lg tracking-tight text-foreground group-hover:text-accent transition-colors">
             {PORTFOLIO_CONTENT.personal.name}
           </span>
         </a>
@@ -50,12 +50,12 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
         {/* Right side: Navigation Items directly to the left of the Theme Toggle */}
         <div className="flex items-center gap-7">
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6 font-mono text-xs font-medium tracking-wider uppercase text-foreground/90">
+          <nav className="hidden md:flex items-center gap-6 font-mono text-xs tracking-wider uppercase text-muted">
             {navItems.map((item) => (
               <a
                 key={item.href}
                 href={item.href}
-                className="hover:text-accent transition-colors"
+                className="hover:text-foreground hover:text-accent transition-colors"
               >
                 {item.label}
               </a>
