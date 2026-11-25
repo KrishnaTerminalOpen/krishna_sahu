@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { ProjectItem } from '@/data/content';
+import { PORTFOLIO_CONTENT, ProjectItem } from '@/data/portfolio';
 import { X, ExternalLink, Github, Sparkles, AlertCircle, Cpu, CheckCircle2 } from 'lucide-react';
 
 interface CaseStudyModalProps {
@@ -11,6 +11,7 @@ interface CaseStudyModalProps {
 
 export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
   if (!project) return null;
+  const { labels } = PORTFOLIO_CONTENT.projects;
 
   return (
     <div
@@ -50,10 +51,12 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
         <div className="p-6 sm:p-8 space-y-6 max-h-[80vh] overflow-y-auto">
           {/* Title & Metric Chip */}
           <div>
-            <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 border border-accent/30 font-mono text-xs text-accent mb-4">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>{project.metric}</span>
-            </div>
+            {project.metric?.trim() && (
+              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 border border-accent/30 font-mono text-xs text-accent mb-4">
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>{project.metric}</span>
+              </div>
+            )}
             <h3
               id="case-study-title"
               className="font-serif text-3xl sm:text-4xl text-foreground font-normal tracking-tight leading-tight"
@@ -70,7 +73,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
             <div className="rounded-xl border border-border/80 bg-surface-elevated/50 p-5">
               <div className="flex items-center gap-2 font-mono text-xs text-accent uppercase tracking-wider mb-2">
                 <AlertCircle className="w-4 h-4" />
-                <span>The Problem & Engineering Challenge</span>
+                <span>{labels.modalProblem}</span>
               </div>
               <p className="font-sans text-sm sm:text-base text-foreground/90 font-light leading-relaxed">
                 {project.problem}
@@ -83,7 +86,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
             <div className="rounded-xl border border-border/80 bg-surface-elevated/50 p-5">
               <div className="flex items-center gap-2 font-mono text-xs text-accent uppercase tracking-wider mb-2">
                 <Cpu className="w-4 h-4" />
-                <span>Methodology & Technical Architecture</span>
+                <span>{labels.modalApproach}</span>
               </div>
               <p className="font-sans text-sm sm:text-base text-foreground/90 font-light leading-relaxed">
                 {project.approach}
@@ -96,7 +99,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
             <div className="rounded-xl border border-accent/20 bg-accent/5 p-5">
               <div className="flex items-center gap-2 font-mono text-xs text-accent uppercase tracking-wider mb-2">
                 <CheckCircle2 className="w-4 h-4" />
-                <span>Verified Results & Measured Outcomes</span>
+                <span>{labels.modalResults}</span>
               </div>
               <p className="font-sans text-sm sm:text-base text-foreground font-light leading-relaxed">
                 {project.results}
@@ -107,7 +110,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
           {/* Tech Stack Chips */}
           <div>
             <div className="font-mono text-xs uppercase tracking-wider text-subtle mb-3">
-              Technologies & Frameworks Deployed
+              {labels.modalTech}
             </div>
             <div className="flex flex-wrap gap-2">
               {project.tech.map((t) => (
@@ -125,7 +128,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
         {/* Modal Footer Links */}
         <div className="flex flex-wrap items-center justify-between gap-4 px-6 py-4 border-t border-border bg-surface-elevated/50">
           <div className="flex items-center gap-3">
-            {project.githubUrl && (
+            {project.githubUrl?.trim() && (
               <a
                 href={project.githubUrl}
                 target="_blank"
@@ -133,10 +136,10 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-surface text-foreground font-mono text-xs hover:border-accent transition-colors"
               >
                 <Github className="w-4 h-4" />
-                <span>View Source Code</span>
+                <span>{labels.modalSource}</span>
               </a>
             )}
-            {project.liveUrl && (
+            {project.liveUrl?.trim() && (
               <a
                 href={project.liveUrl}
                 target="_blank"
@@ -144,7 +147,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
                 className="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-foreground text-background font-mono text-xs hover:opacity-90 transition-opacity"
               >
                 <ExternalLink className="w-4 h-4" />
-                <span>Live Interactive Demo</span>
+                <span>{labels.modalLive}</span>
               </a>
             )}
           </div>
@@ -154,7 +157,7 @@ export function CaseStudyModal({ project, onClose }: CaseStudyModalProps) {
             type="button"
             className="text-xs font-mono text-muted hover:text-foreground"
           >
-            Close Escape
+            {labels.modalClose}
           </button>
         </div>
       </div>

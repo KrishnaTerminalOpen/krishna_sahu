@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { PORTFOLIO_CONTENT } from '@/data/content';
+import { PORTFOLIO_CONTENT } from '@/data/portfolio';
 import { SectionHeader } from './SectionHeader';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -30,15 +30,17 @@ export function CertificationsSection() {
               </div>
             </div>
 
-            <a
-              href={cert.credentialUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1 font-mono text-xs text-muted hover:text-foreground transition-colors shrink-0"
-            >
-              <span>Verify</span>
-              <ArrowUpRight className="w-3 h-3 text-muted" />
-            </a>
+            {cert.credentialUrl?.trim() && (
+              <a
+                href={cert.credentialUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1 font-mono text-xs text-muted hover:text-foreground transition-colors shrink-0"
+              >
+                <span>{certifications.verifyLabel}</span>
+                <ArrowUpRight className="w-3 h-3 text-muted" />
+              </a>
+            )}
           </div>
         ))}
       </div>

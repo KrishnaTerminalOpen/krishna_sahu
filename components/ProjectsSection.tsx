@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { PORTFOLIO_CONTENT, ProjectItem } from '@/data/content';
+import { PORTFOLIO_CONTENT, ProjectItem } from '@/data/portfolio';
 import { SectionHeader } from './SectionHeader';
 import { CaseStudyModal } from './CaseStudyModal';
 import { ArrowUpRight, Github, ExternalLink, Sparkles, ArrowRight, Eye } from 'lucide-react';
@@ -97,10 +97,12 @@ export function ProjectsSection() {
               </div>
 
               {/* Engineered Metric Chip */}
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs text-accent">
-                <Sparkles className="w-3 h-3 text-accent" />
-                <span className="font-medium tracking-tight">{project.metric}</span>
-              </div>
+              {project.metric?.trim() && (
+                <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-accent/10 border border-accent/20 font-mono text-xs text-accent">
+                  <Sparkles className="w-3 h-3 text-accent" />
+                  <span className="font-medium tracking-tight">{project.metric}</span>
+                </div>
+              )}
             </div>
 
             {/* Main Content Layout (Architectural Split Dossier) */}
@@ -125,7 +127,7 @@ export function ProjectsSection() {
                     <div className="pt-1">
                       <div className="flex flex-wrap items-baseline gap-1.5 font-mono text-[11px] text-muted">
                         <span className="text-accent text-[10px] font-medium tracking-wider uppercase shrink-0">
-                          Architecture:
+                          {projects.labels.architecture}
                         </span>
                         <span className="text-foreground/85 font-light">
                           {project.architecture}
@@ -138,7 +140,7 @@ export function ProjectsSection() {
                 {/* Tech Pills */}
                 <div className="pt-0.5">
                   <div className="font-mono text-[9px] uppercase tracking-wider text-subtle mb-1.5">
-                    Production Stack
+                    {projects.labels.productionStack}
                   </div>
                   <div className="flex flex-wrap gap-1.5">
                     {project.tech.map((t) => (
@@ -153,42 +155,66 @@ export function ProjectsSection() {
                 </div>
 
                 {/* Actions */}
-                <div className="pt-1.5 flex flex-wrap items-center gap-4 font-mono text-xs">
-                  <button
-                    type="button"
-                    onClick={() => setSelectedCaseStudy(project)}
-                    className="inline-flex items-center gap-1.5 text-foreground hover:text-accent font-medium transition-colors group/link"
-                  >
-                    <span>Read Case Study</span>
-                    <ArrowUpRight className="w-3.5 h-3.5 text-accent group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
-                  </button>
-
-                  <div className="flex items-center gap-2">
-                    {project.githubUrl && (
-                      <a
-                        href={project.githubUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-1.5 rounded-md border border-border/70 bg-surface hover:bg-surface-elevated text-muted hover:text-foreground hover:border-accent/40 transition-colors"
-                        title="View Source Code"
-                      >
-                        <Github className="w-3.5 h-3.5" />
-                      </a>
+                {(project.caseStudyUrl?.trim() ||
+                  (project.caseStudyUrl === undefined && (project.problem || project.approach || project.results)) ||
+                  project.githubUrl?.trim() ||
+                  project.liveUrl?.trim()) && (
+                  <div className="pt-1.5 flex flex-wrap items-center gap-4 font-mono text-xs">
+                    {(project.caseStudyUrl?.trim() ||
+                      (project.caseStudyUrl === undefined && (project.problem || project.approach || project.results))) && (
+                      project.caseStudyUrl?.trim() && !(project.problem || project.approach || project.results) ? (
+                        <a
+                          href={project.caseStudyUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-1.5 text-foreground hover:text-accent font-medium transition-colors group/link"
+                        >
+                          <span>{projects.labels.readCaseStudy}</span>
+                          <ArrowUpRight className="w-3.5 h-3.5 text-accent group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                        </a>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() => setSelectedCaseStudy(project)}
+                          className="inline-flex items-center gap-1.5 text-foreground hover:text-accent font-medium transition-colors group/link"
+                        >
+                          <span>{projects.labels.readCaseStudy}</span>
+                          <ArrowUpRight className="w-3.5 h-3.5 text-accent group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
+                        </button>
+                      )
                     )}
 
-                    {project.liveUrl && (
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-1.5 rounded-md border border-border/70 bg-surface hover:bg-surface-elevated text-muted hover:text-foreground hover:border-accent/40 transition-colors"
-                        title="Live Platform"
-                      >
-                        <ExternalLink className="w-3.5 h-3.5" />
-                      </a>
+                    {(project.githubUrl?.trim() || project.liveUrl?.trim()) && (
+                      <div className="flex items-center gap-2">
+                        {project.githubUrl?.trim() && (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1.5 rounded-md border border-border/70 bg-surface hover:bg-surface-elevated text-muted hover:text-foreground hover:border-accent/40 transition-colors"
+                            title="View Source Code"
+                            aria-label={`View ${project.title} source code on GitHub`}
+                          >
+                            <Github className="w-3.5 h-3.5" />
+                          </a>
+                        )}
+
+                        {project.liveUrl?.trim() && (
+                          <a
+                            href={project.liveUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-1.5 rounded-md border border-border/70 bg-surface hover:bg-surface-elevated text-muted hover:text-foreground hover:border-accent/40 transition-colors"
+                            title="Live Platform"
+                            aria-label={`Open ${project.title} live platform`}
+                          >
+                            <ExternalLink className="w-3.5 h-3.5" />
+                          </a>
+                        )}
+                      </div>
                     )}
                   </div>
-                </div>
+                )}
               </div>
 
               {/* Right Column (7 cols): Expanded Large System Viewport */}
@@ -204,7 +230,7 @@ export function ProjectsSection() {
                       <span className="w-2 h-2 rounded-full bg-border" />
                       <span className="w-2 h-2 rounded-full bg-border" />
                     </div>
-                    <span className="tracking-widest uppercase text-muted font-medium text-[9px]">SYSTEM VIEWPORT</span>
+                    <span className="tracking-widest uppercase text-muted font-medium text-[9px]">{projects.labels.systemViewport}</span>
                   </div>
 
                   {/* High-Resolution System Image Container */}
@@ -212,15 +238,15 @@ export function ProjectsSection() {
                     {project.imageUrl ? (
                       <Image
                         src={project.imageUrl}
-                        alt={project.title}
+                        alt={project.title ? `${project.title} interface preview` : 'Project interface preview'}
                         fill
-                        priority={idx === 0}
-                        sizes="(max-width: 768px) 100vw, 650px"
+                        loading="lazy"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 55vw, 600px"
                         className="object-cover object-top transition-transform duration-500 ease-out group-hover/viewport:scale-[1.02]"
                       />
                     ) : (
                       <div className="w-full h-full flex items-center justify-center text-subtle font-mono text-xs">
-                        [ SYSTEM PREVIEW ]
+                        {projects.labels.systemPreview}
                       </div>
                     )}
 
@@ -231,7 +257,7 @@ export function ProjectsSection() {
                     <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover/viewport:opacity-100 transition-opacity duration-200 bg-background/20 backdrop-blur-[2px]">
                       <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface/95 text-foreground font-mono text-xs border border-border shadow-lg">
                         <Eye className="w-3.5 h-3.5 text-accent" />
-                        <span>Inspect Interface</span>
+                        <span>{projects.labels.inspectInterface}</span>
                       </span>
                     </div>
                   </div>
@@ -247,7 +273,7 @@ export function ProjectsSection() {
 
       {filteredProjects.length === 0 && (
         <div className="text-center py-12 text-xs font-mono text-muted">
-          No projects found in this category.
+          {projects.labels.emptyState}
         </div>
       )}
 
