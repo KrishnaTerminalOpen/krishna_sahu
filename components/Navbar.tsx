@@ -41,7 +41,10 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
           href="#"
           className="group flex items-center focus:outline-none"
         >
-          <span className="font-serif text-lg tracking-tight text-foreground group-hover:text-accent transition-colors">
+          <span
+            className="text-xl tracking-tight text-foreground group-hover:text-accent transition-colors"
+            style={{ fontFamily: 'var(--font-display), var(--font-serif)' }}
+          >
             {PORTFOLIO_CONTENT.personal.name}
           </span>
         </a>
