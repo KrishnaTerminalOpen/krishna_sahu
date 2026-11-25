@@ -225,6 +225,8 @@ export function useAuraVoice({
   const [permissionError, setPermissionError] = useState<string | null>(null);
 
   const recognitionRef = useRef<SpeechRecognitionLike | null>(null);
+  const utteranceRef = useRef<SpeechSynthesisUtterance | null>(null);
+  const speechTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const isVoiceModeRef = useRef(false);
   const voiceStateRef = useRef<AuraVoiceState>('IDLE');
   const voicesRef = useRef<SpeechSynthesisVoice[]>([]);
@@ -277,6 +279,10 @@ export function useAuraVoice({
     if (activatedTimerRef.current) {
       clearTimeout(activatedTimerRef.current);
       activatedTimerRef.current = null;
+    }
+    if (speechTimeoutRef.current) {
+      clearTimeout(speechTimeoutRef.current);
+      speechTimeoutRef.current = null;
     }
   }, []);
 
@@ -367,6 +373,7 @@ export function useAuraVoice({
       window.speechSynthesis.cancel();
 
       const utterance = new SpeechSynthesisUtterance(textToSpeak);
+      utteranceRef.current = utterance;
       const voices = voicesRef.current.length ? voicesRef.current : window.speechSynthesis.getVoices();
       const voice = selectPreferredVoice(voices);
       if (voice) {
@@ -378,7 +385,15 @@ export function useAuraVoice({
       utterance.rate = 1.0;
       utterance.pitch = 1.05;
 
+      let settled = false;
       const handleSpeechEnd = () => {
+        if (settled) return;
+        settled = true;
+        utteranceRef.current = null;
+        if (speechTimeoutRef.current) {
+          clearTimeout(speechTimeoutRef.current);
+          speechTimeoutRef.current = null;
+        }
         if (!isVoiceModeRef.current) {
           updateVoiceState('IDLE');
           return;
@@ -390,7 +405,14 @@ export function useAuraVoice({
       utterance.onend = handleSpeechEnd;
       utterance.onerror = handleSpeechEnd;
 
+      // Safety timeout in case browser speechSynthesis fails to emit onend
+      speechTimeoutRef.current = setTimeout(
+        handleSpeechEnd,
+        Math.max(8000, textToSpeak.length * 120)
+      );
+
       window.speechSynthesis.speak(utterance);
+      window.speechSynthesis.resume();
     },
     [returnToIdle, stopRecognitionInstance, updateVoiceState]
   );

@@ -127,6 +127,24 @@ async function fetchGeneralKnowledge(query: string): Promise<string | null> {
   return null;
 }
 
+function toConciseVoiceReply(raw: string): string {
+  const cleaned = raw
+    .replace(/```[\s\S]*?```/g, ' ')
+    .replace(/`([^`]+)`/g, '$1')
+    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1')
+    .replace(/https?:\/\/\S+/g, '')
+    .replace(/(?:^|\n)\s*(?:\d+\.|[-*•])\s+/g, ' ')
+    .replace(/[*_~#>-]{1,3}/g, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+
+  const sentences = cleaned.match(/[^.!?]+[.!?]+(?:\s|$)/g);
+  if (sentences && sentences.length > 2) {
+    return sentences.slice(0, 2).join(' ').trim();
+  }
+  return cleaned;
+}
+
 export async function POST(req: NextRequest) {
   try {
     const ip = req.headers.get('x-forwarded-for') || req.ip || 'anonymous';
@@ -240,18 +258,23 @@ Instructions:
     // 1. Check portfolio-grounded knowledge first
     const portfolioAnswer = answerFromKnowledgeBase(sanitizedMessage);
     if (portfolioAnswer) {
-      return NextResponse.json({ reply: portfolioAnswer });
+      return NextResponse.json({
+        reply: isVoice ? toConciseVoiceReply(portfolioAnswer) : portfolioAnswer,
+      });
     }
 
     // 2. For general knowledge queries (e.g., "jio", "what is machine learning", "python", "quantum computing"), fetch live factual knowledge
     const generalAnswer = await fetchGeneralKnowledge(sanitizedMessage);
     if (generalAnswer) {
-      return NextResponse.json({ reply: generalAnswer });
+      return NextResponse.json({
+        reply: isVoice ? toConciseVoiceReply(generalAnswer) : generalAnswer,
+      });
     }
 
     // 3. Conversational fallback (never hard-block)
+    const fallbackReply = `I looked up "${sanitizedMessage}". You can ask me any question about technology, companies, concepts, or Krishna Sahu's machine learning projects, skills, and background! If you'd like to connect with Krishna, feel free to write to ${aboutData.email}.`;
     return NextResponse.json({
-      reply: `I looked up "${sanitizedMessage}". You can ask me any question about technology, companies, concepts, or Krishna Sahu's machine learning projects, skills, and background! If you'd like to connect with Krishna, feel free to write to ${aboutData.email}.`,
+      reply: isVoice ? toConciseVoiceReply(fallbackReply) : fallbackReply,
     });
   } catch (error) {
     console.error('Chat API Error:', error);

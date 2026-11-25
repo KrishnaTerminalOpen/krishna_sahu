@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Navbar } from '@/components/Navbar';
 import { HeroSection } from '@/components/HeroSection';
 import { AboutSection } from '@/components/AboutSection';
@@ -24,6 +24,17 @@ export default function Home() {
   const [auraVoiceState, setAuraVoiceState] = useState<AuraVoiceState>('IDLE');
   const [auraInterruptSignal, setAuraInterruptSignal] = useState(0);
   const [showToast, setShowToast] = useState(false);
+
+  useEffect(() => {
+    const handleGlobalKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setIsCommandPaletteOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleGlobalKeyDown);
+    return () => window.removeEventListener('keydown', handleGlobalKeyDown);
+  }, []);
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText(PORTFOLIO_CONTENT.personal.email);

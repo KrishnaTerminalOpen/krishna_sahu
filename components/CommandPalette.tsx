@@ -166,7 +166,7 @@ export function CommandPalette({
     {
       id: 'nav-contact',
       icon: Mail,
-      title: '07 / Contact',
+      title: '06 / Contact',
       description: 'Send a message or connect directly',
       category: 'Navigation',
       run: () => {
@@ -174,6 +174,39 @@ export function CommandPalette({
         onClose();
       },
     },
+    ...PORTFOLIO_CONTENT.projects.sampleProjects.map((project) => ({
+      id: `project-${project.id}`,
+      icon: FolderGit2,
+      title: project.title,
+      description: `${project.category} · ${project.summary}`,
+      category: 'Project',
+      run: () => {
+        document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' });
+        onClose();
+      },
+    })),
+    ...PORTFOLIO_CONTENT.skills.items.map((skill) => ({
+      id: `skill-${skill.name}`,
+      icon: Code,
+      title: skill.name,
+      description: `${skill.category} · ${skill.context}`,
+      category: 'Skill',
+      run: () => {
+        document.getElementById('skills')?.scrollIntoView({ behavior: 'smooth' });
+        onClose();
+      },
+    })),
+    ...PORTFOLIO_CONTENT.certifications.items.map((cert, idx) => ({
+      id: `cert-${idx}`,
+      icon: Award,
+      title: cert.title,
+      description: `${cert.issuer} · ${cert.date}`,
+      category: 'Certification',
+      run: () => {
+        document.getElementById('certifications')?.scrollIntoView({ behavior: 'smooth' });
+        onClose();
+      },
+    })),
   ];
 
   const filtered = actions.filter((act) => {
@@ -184,6 +217,20 @@ export function CommandPalette({
       act.category.toLowerCase().includes(q)
     );
   });
+
+  if (query.trim()) {
+    filtered.push({
+      id: 'ask-aura-query',
+      icon: Sparkles,
+      title: `Ask Aura: "${query.trim()}"`,
+      description: 'Ask the AI assistant about this query',
+      category: 'Ask Aura',
+      run: () => {
+        onClose();
+        onOpenAiAssistant();
+      },
+    });
+  }
 
   const handleKeyDownList = (e: React.KeyboardEvent) => {
     if (e.key === 'ArrowDown') {
