@@ -141,6 +141,11 @@ export async function POST(req: NextRequest) {
 
     const body = await req.json();
     const rawMessage = body?.message;
+    const isVoice = Boolean(body?.isVoice);
+
+    const voiceInstruction = isVoice
+      ? '\n- The user asked by voice. Reply in 1-2 short, conversational sentences, maximum about 30 words. No lists, no markdown, no links, no emojis.'
+      : '';
 
     // Input Sanitization
     if (!rawMessage || typeof rawMessage !== 'string') {
@@ -178,7 +183,7 @@ User question: "${sanitizedMessage}"
 Instructions:
 - You are a universal assistant: answer ANY question helpfully, accurately, and politely (including general knowledge, technology, coding, trivia, or definitions).
 - If the question is about Krishna, ground your response in his background.
-- If the question is general or unrelated to Krishna, answer the question directly and concisely without declining or restricting the user.`,
+- If the question is general or unrelated to Krishna, answer the question directly and concisely without declining or restricting the user.${voiceInstruction}`,
                     },
                   ],
                 },
@@ -212,7 +217,7 @@ Instructions:
                 role: 'system',
                 content: `You are Aura, an AI assistant on Krishna Sahu's portfolio. You answer all questions accurately and concisely. If asked about Krishna, refer to: ${JSON.stringify(
                   aboutData
-                )}. If asked general questions, answer them clearly and helpfully.`,
+                )}. If asked general questions, answer them clearly and helpfully.${voiceInstruction}`,
               },
               { role: 'user', content: sanitizedMessage },
             ],

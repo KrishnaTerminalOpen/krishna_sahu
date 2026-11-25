@@ -1,8 +1,9 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { PORTFOLIO_CONTENT } from '@/data/content';
-import { Sparkles, X, Send, RotateCcw, Bot, User } from 'lucide-react';
+import { Sparkles, X, Send, RotateCcw, Bot, User, Mic } from 'lucide-react';
+import { useAuraVoice, type AuraVoiceState } from '@/hooks/useAuraVoice';
 
 interface Message {
   id: string;
@@ -13,9 +14,18 @@ interface Message {
 interface AiAssistantModalProps {
   isOpen: boolean;
   onClose: () => void;
+  onOpen?: () => void;
+  onVoiceStateChange?: (isVoiceMode: boolean, voiceState: AuraVoiceState) => void;
+  interruptSignal?: number;
 }
 
-export function AiAssistantModal({ isOpen, onClose }: AiAssistantModalProps) {
+export function AiAssistantModal({
+  isOpen,
+  onClose,
+  onOpen,
+  onVoiceStateChange,
+  interruptSignal,
+}: AiAssistantModalProps) {
   const { assistant } = PORTFOLIO_CONTENT;
   const [messages, setMessages] = useState<Message[]>([
     {
@@ -26,6 +36,7 @@ export function AiAssistantModal({ isOpen, onClose }: AiAssistantModalProps) {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const isLoadingRef = useRef(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const scrollToBottom = () => {
@@ -38,9 +49,12 @@ export function AiAssistantModal({ isOpen, onClose }: AiAssistantModalProps) {
     }
   }, [messages, isOpen]);
 
-  const handleSend = async (userText?: string) => {
+  const handleSend = useCallback(async (
+    userText?: string,
+    options?: { isVoice?: boolean }
+  ): Promise<string | null> => {
     const textToSend = userText || input;
-    if (!textToSend.trim() || isLoading) return;
+    if (!textToSend.trim() || isLoadingRef.current) return null;
 
     const userMsg: Message = {
       id: `u-${Date.now()}`,
@@ -50,17 +64,18 @@ export function AiAssistantModal({ isOpen, onClose }: AiAssistantModalProps) {
 
     setMessages((prev) => [...prev, userMsg]);
     if (!userText) setInput('');
+    isLoadingRef.current = true;
     setIsLoading(true);
 
     try {
       const res = await fetch('/api/chat', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: textToSend }),
+        body: JSON.stringify({ message: textToSend, isVoice: Boolean(options?.isVoice) }),
       });
 
       const data = await res.json();
-      const replyText = data?.reply || assistant.fallbackMessage;
+      const replyText: string = data?.reply || assistant.fallbackMessage;
 
       const aiMsg: Message = {
         id: `a-${Date.now()}`,
@@ -69,21 +84,45 @@ export function AiAssistantModal({ isOpen, onClose }: AiAssistantModalProps) {
       };
 
       setMessages((prev) => [...prev, aiMsg]);
-    } catch (err) {
+      return replyText;
+    } catch {
+      const errText = 'Unable to communicate with the service right now. Please email Krishna directly!';
       setMessages((prev) => [
         ...prev,
         {
           id: `err-${Date.now()}`,
           sender: 'assistant',
-          text: 'Unable to communicate with the service right now. Please email Krishna directly!',
+          text: errText,
         },
       ]);
+      return errText;
     } finally {
+      isLoadingRef.current = false;
       setIsLoading(false);
     }
-  };
+  }, [assistant.fallbackMessage, input]);
+
+  const {
+    isSupported,
+    isVoiceMode,
+    voiceState,
+    permissionError,
+    toggleVoiceMode,
+    stopSpeaking,
+  } = useAuraVoice({
+    onQuestion: (question, options) => handleSend(question, options),
+    onOpenPanel: onOpen,
+    onVoiceStateChange,
+  });
+
+  useEffect(() => {
+    if (interruptSignal) {
+      stopSpeaking();
+    }
+  }, [interruptSignal, stopSpeaking]);
 
   const handleReset = () => {
+    stopSpeaking();
     setMessages([
       {
         id: 'initial',
@@ -124,11 +163,30 @@ export function AiAssistantModal({ isOpen, onClose }: AiAssistantModalProps) {
           </div>
 
           <div className="flex items-center gap-1.5">
+            {isSupported && (
+              <button
+                onClick={toggleVoiceMode}
+                type="button"
+                className={`p-1.5 rounded-md transition-colors ${
+                  isVoiceMode
+                    ? voiceState === 'ACTIVATED'
+                      ? 'text-accent bg-accent/25 animate-pulse ring-1 ring-accent/50'
+                      : 'text-accent bg-accent/15'
+                    : 'text-muted hover:text-foreground hover:bg-surface-elevated'
+                }`}
+                title={isVoiceMode ? 'Turn off Voice mode' : 'Turn on Voice mode ("Hey Aura")'}
+                aria-label={isVoiceMode ? 'Turn off Voice mode' : 'Turn on Voice mode'}
+                aria-pressed={isVoiceMode}
+              >
+                <Mic className="w-3.5 h-3.5" />
+              </button>
+            )}
             <button
               onClick={handleReset}
               type="button"
               className="p-1.5 rounded-md text-muted hover:text-foreground hover:bg-surface-elevated transition-colors"
               title="Reset conversation"
+              aria-label="Reset conversation"
             >
               <RotateCcw className="w-3.5 h-3.5" />
             </button>
@@ -183,6 +241,13 @@ export function AiAssistantModal({ isOpen, onClose }: AiAssistantModalProps) {
             </div>
           )}
 
+          {/* Inline Mic Permission Error */}
+          {permissionError && (
+            <div className="px-3 py-2 rounded-lg border border-accent/30 bg-accent/10 font-mono text-[11px] text-accent">
+              {permissionError}
+            </div>
+          )}
+
           <div ref={messagesEndRef} />
         </div>
 
@@ -220,6 +285,13 @@ export function AiAssistantModal({ isOpen, onClose }: AiAssistantModalProps) {
             <Send className="w-4 h-4" />
           </button>
         </div>
+
+        {/* Voice Privacy Note */}
+        {isSupported && (
+          <div className="px-4 py-1.5 bg-surface border-t border-border/50 text-center font-mono text-[10px] text-muted/80">
+            Voice mode uses your browser&apos;s speech recognition.
+          </div>
+        )}
       </div>
     </div>
   );
