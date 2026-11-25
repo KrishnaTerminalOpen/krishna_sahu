@@ -21,7 +21,10 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
 
         {/* Identity & Role */}
         <div className="space-y-3 mb-6">
-          <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl text-foreground font-normal tracking-tight leading-[1.05]">
+          <h1
+            className="text-6xl sm:text-7xl md:text-8xl text-foreground font-normal tracking-tight leading-[1.0]"
+            style={{ fontFamily: 'var(--font-display), var(--font-serif)' }}
+          >
             {personal.name}
           </h1>
           <p className="font-mono text-sm sm:text-base text-accent font-light">

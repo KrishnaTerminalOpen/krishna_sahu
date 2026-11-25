@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next';
-import { Fraunces, Inter, JetBrains_Mono } from 'next/font/google';
+import { Fraunces, Inter, JetBrains_Mono, Instrument_Serif } from 'next/font/google';
 import './globals.css';
 import { ThemeProvider } from '@/components/ThemeProvider';
 import { CustomCursor } from '@/components/CustomCursor';
@@ -16,6 +16,13 @@ const serifFont = Fraunces({
 const sansFont = Inter({
   subsets: ['latin'],
   variable: '--font-sans',
+  display: 'swap',
+});
+
+const displayFont = Instrument_Serif({
+  subsets: ['latin'],
+  weight: '400',
+  variable: '--font-display',
   display: 'swap',
 });
 
@@ -87,7 +94,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`dark ${serifFont.variable} ${sansFont.variable} ${monoFont.variable}`}
+      className={`dark ${serifFont.variable} ${sansFont.variable} ${monoFont.variable} ${displayFont.variable}`}
       suppressHydrationWarning
     >
       <body className="bg-background text-foreground selection:bg-accent/20 min-h-screen">
