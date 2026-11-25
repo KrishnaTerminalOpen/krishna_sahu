@@ -50,7 +50,7 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
         {/* Right side: Navigation Items directly to the left of the Theme Toggle */}
         <div className="flex items-center gap-7">
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6 font-mono text-xs tracking-wider uppercase text-muted">
+          <nav className="hidden md:flex items-center gap-6 font-mono text-sm tracking-wider uppercase text-muted">
             {navItems.map((item) => (
               <a
                 key={item.href}
@@ -90,7 +90,7 @@ export function Navbar({ onOpenCommandPalette }: NavbarProps) {
 
       {/* Mobile Menu Dropdown */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-b border-border bg-surface px-6 py-4 flex flex-col gap-3 font-mono text-xs tracking-wider text-muted animate-fade-in">
+        <div className="md:hidden border-b border-border bg-surface px-6 py-4 flex flex-col gap-3 font-mono text-sm tracking-wider text-muted animate-fade-in">
           {navItems.map((item) => (
             <a
               key={item.href}
