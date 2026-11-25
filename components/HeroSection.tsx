@@ -49,8 +49,8 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
               className="group inline-flex items-center gap-3 pl-5 pr-2.5 py-2 rounded-full bg-accent text-background font-mono text-xs font-medium shadow-md hover:bg-accent-hover hover:-translate-y-0.5 transition-all duration-200"
             >
               <span>{hero.ctaLabel}</span>
-              <span className="w-6 h-6 rounded-full bg-background/15 flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
-                <ArrowRight className="w-3.5 h-3.5 text-background" />
+              <span className="w-6 h-6 rounded-full bg-[#0c0d0f] flex items-center justify-center group-hover:translate-x-0.5 transition-transform">
+                <ArrowRight className="w-3.5 h-3.5 text-accent" />
               </span>
             </a>
           </div>
