@@ -5,7 +5,7 @@ import { ThemeProvider } from '@/components/ThemeProvider';
 import { CustomCursor } from '@/components/CustomCursor';
 import { ScrollProgressBar } from '@/components/ScrollProgressBar';
 import { GlobalParticlesBackground } from '@/components/GlobalParticlesBackground';
-import { PORTFOLIO_CONTENT } from '@/data/content';
+import { PORTFOLIO_CONTENT } from '@/data/portfolio';
 
 const serifFont = Fraunces({
   subsets: ['latin'],
@@ -26,34 +26,28 @@ const monoFont = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://krishnasahu.dev'),
+  metadataBase: new URL(PORTFOLIO_CONTENT.seo.siteUrl),
   title: {
     default: `${PORTFOLIO_CONTENT.personal.name} — ${PORTFOLIO_CONTENT.personal.role}`,
     template: `%s | ${PORTFOLIO_CONTENT.personal.name}`,
   },
   description: `${PORTFOLIO_CONTENT.personal.tagline} Focused on Machine Learning, Data Science, and Scalable Web Platforms.`,
-  keywords: [
-    'Krishna Sahu',
-    'Data Science Portfolio',
-    'Machine Learning Engineer',
-    'AI Engineer',
-    'Computer Vision',
-    'NLP',
-    'Full Stack AI',
-    'Next.js Portfolio'
-  ],
-  authors: [{ name: PORTFOLIO_CONTENT.personal.name, url: 'https://krishnasahu.dev' }],
+  keywords: PORTFOLIO_CONTENT.seo.keywords,
+  authors: [{ name: PORTFOLIO_CONTENT.personal.name, url: PORTFOLIO_CONTENT.seo.siteUrl }],
   creator: PORTFOLIO_CONTENT.personal.name,
+  alternates: {
+    canonical: PORTFOLIO_CONTENT.seo.siteUrl,
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://krishnasahu.dev',
+    url: PORTFOLIO_CONTENT.seo.siteUrl,
     title: `${PORTFOLIO_CONTENT.personal.name} — ${PORTFOLIO_CONTENT.personal.role}`,
     description: PORTFOLIO_CONTENT.personal.tagline,
     siteName: `${PORTFOLIO_CONTENT.personal.name} Portfolio`,
     images: [
       {
-        url: '/og-image.png',
+        url: PORTFOLIO_CONTENT.seo.ogImage,
         width: 1200,
         height: 630,
         alt: `${PORTFOLIO_CONTENT.personal.name} — Portfolio`,
@@ -64,8 +58,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: `${PORTFOLIO_CONTENT.personal.name} — ${PORTFOLIO_CONTENT.personal.role}`,
     description: PORTFOLIO_CONTENT.personal.tagline,
-    images: ['/og-image.png'],
-    creator: '@krishnasahu',
+    images: [PORTFOLIO_CONTENT.seo.ogImage],
+    creator: PORTFOLIO_CONTENT.seo.twitterHandle,
   },
   robots: {
     index: true,
