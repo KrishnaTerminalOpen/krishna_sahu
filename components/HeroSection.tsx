@@ -108,10 +108,10 @@ export function HeroSection({ onOpenAiAssistant: _onOpenAiAssistant }: HeroSecti
             aria-hidden="true"
           />
 
-          {/* Outer hairline arch */}
-          <div className="relative p-3 rounded-t-full rounded-b-2xl border border-accent/35 bg-surface/10 shadow-[0_0_60px_rgba(232,160,76,0.18)]">
-            {/* Inner glowing amber arch */}
-            <div className="relative w-[220px] sm:w-[255px] aspect-[3/4] rounded-t-full rounded-b-xl border border-accent/80 bg-[#101014] overflow-hidden shadow-[0_0_30px_rgba(232,160,76,0.22)]">
+          {/* Outer arch border only (white/foreground) */}
+          <div className="relative p-3 rounded-t-full rounded-b-2xl border border-foreground/40 bg-surface/10 shadow-[0_0_60px_rgba(232,160,76,0.18)]">
+            {/* Inner arch container without border */}
+            <div className="relative w-[220px] sm:w-[255px] aspect-[3/4] rounded-t-full rounded-b-xl bg-[#101014] overflow-hidden">
               {personal.avatarUrl?.trim() ? (
                 <Image
                   src={personal.avatarUrl}
