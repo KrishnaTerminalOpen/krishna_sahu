@@ -6,7 +6,7 @@ import { SectionHeader } from './SectionHeader';
 import { Counter } from './Counter';
 
 export function AboutSection() {
-  const { about } = PORTFOLIO_CONTENT;
+  const { about, personal } = PORTFOLIO_CONTENT;
 
   return (
     <section id="about" className="py-20 border-b border-border scroll-mt-20">
@@ -14,6 +14,11 @@ export function AboutSection() {
         number={about.sectionNumber}
         title={about.sectionTitle}
       />
+
+      {/* Highlighted Role Line */}
+      <p className="font-mono text-sm sm:text-base text-accent font-normal mb-4">
+        {personal.role}
+      </p>
 
       {/* Editorial Lead Paragraph */}
       <p className="font-serif text-2xl sm:text-3xl text-foreground/90 font-light leading-relaxed max-w-3xl mb-5">

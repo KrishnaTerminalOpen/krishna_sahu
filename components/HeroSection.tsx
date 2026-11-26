@@ -71,12 +71,7 @@ export function HeroSection({ onOpenAiAssistant: _onOpenAiAssistant }: HeroSecti
               <span className="block text-[#E8A04C] italic">Sahu</span>
             </h1>
 
-            {/* 3. Role Line */}
-            <p className="font-mono text-[13px] sm:text-[15px] uppercase tracking-[0.06em] text-[#A1A1AA]">
-              FULL-STACK DEVELOPER &middot; AI/ML IN PROGRESS &middot; BENGALURU
-            </p>
-
-            {/* 4. Paragraph */}
+            {/* 3. Paragraph */}
             <p className="max-w-[560px] font-sans text-[17px] sm:text-[19px] leading-[1.65] text-[#A1A1AA]">
               {personal.tagline}
             </p>
