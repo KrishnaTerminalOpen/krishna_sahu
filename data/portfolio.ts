@@ -91,7 +91,7 @@ export const PORTFOLIO_CONTENT = {
     },
     resumePath: '/resume.pdf', // PLACEHOLDER
     resumeFileName: 'Krishna_Sahu_Resume.pdf', // PLACEHOLDER
-    avatarUrl: '/profile.jpg', // PLACEHOLDER - replace public/profile.jpg with your own photo
+    avatarUrl: '/profile.jpg',
     coordinates: '// 12.9716° N, 77.5946° E', // PLACEHOLDER
     heroBadgeTag: '// FULL-STACK + AI/ML',
   },
