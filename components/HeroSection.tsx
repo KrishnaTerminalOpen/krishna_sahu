@@ -39,7 +39,7 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
 
         {/* Pill action buttons */}
         <div className="pt-2">
-          <div className="flex flex-wrap items-center gap-2.5 font-mono text-xs">
+          <div className="flex flex-wrap items-center gap-3.5 font-mono text-sm">
             {[
               {
                 label: hero.links.email,
@@ -73,9 +73,9 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
                   target={btn.external ? '_blank' : undefined}
                   rel={btn.external ? 'noopener noreferrer' : undefined}
                   download={btn.download}
-                  className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-border bg-surface/90 text-foreground hover:bg-accent hover:border-accent hover:text-background hover:-translate-y-0.5 transition-all duration-200 shadow-xs"
+                  className="group inline-flex items-center gap-2.5 px-6 py-3 rounded-full border border-border bg-surface/90 text-foreground hover:bg-accent hover:border-accent hover:text-background hover:-translate-y-0.5 transition-all duration-200 shadow-xs"
                 >
-                  <Icon className="w-3.5 h-3.5 text-accent group-hover:text-background transition-colors" />
+                  <Icon className="w-4 h-4 text-accent group-hover:text-background transition-colors" />
                   <span>{btn.label}</span>
                 </a>
               );
