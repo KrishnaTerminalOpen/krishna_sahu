@@ -4,7 +4,7 @@ import React from 'react';
 import { PORTFOLIO_CONTENT } from '@/data/portfolio';
 import { HeroStatusStrip } from './HeroStatusStrip';
 import { LivingDataCanvas } from './LivingDataCanvas';
-import { ArrowRight, Download, Github, Linkedin, Mail } from 'lucide-react';
+import { Download, Github, Linkedin, Mail } from 'lucide-react';
 
 interface HeroSectionProps {
   onOpenAiAssistant: () => void;
@@ -37,18 +37,8 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
           &ldquo;{personal.tagline}&rdquo;
         </p>
 
-        {/* Primary CTA followed by pill action buttons in same position */}
-        <div className="space-y-4 pt-2">
-          <div>
-            <a
-              href="#projects"
-              className="group inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full bg-foreground text-background font-mono text-xs font-medium tracking-tight hover:bg-accent hover:-translate-y-0.5 transition-all duration-200 shadow-sm"
-            >
-              <span>{hero.ctaLabel}</span>
-              <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </a>
-          </div>
-
+        {/* Pill action buttons */}
+        <div className="pt-2">
           <div className="flex flex-wrap items-center gap-2.5 font-mono text-xs">
             {[
               {
