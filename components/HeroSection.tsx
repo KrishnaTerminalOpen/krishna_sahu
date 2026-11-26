@@ -136,12 +136,6 @@ export function HeroSection({ onOpenAiAssistant: _onOpenAiAssistant }: HeroSecti
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
             </div>
           </div>
-
-          {/* Monospace coordinates & tag below arch */}
-          <div className="relative mt-4 text-center font-mono text-[10px] tracking-widest uppercase text-muted/80 space-y-1">
-            <div>{personal.coordinates}</div>
-            <div className="text-accent/80">{personal.heroBadgeTag}</div>
-          </div>
         </div>
       </div>
     </section>
