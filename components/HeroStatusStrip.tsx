@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from 'react';
 import { PORTFOLIO_CONTENT } from '@/data/portfolio';
-import { Clock, MapPin } from 'lucide-react';
 
 export function HeroStatusStrip() {
   const [timeString, setTimeString] = useState<string>('');
@@ -30,34 +29,28 @@ export function HeroStatusStrip() {
   }, []);
 
   return (
-    <div className="inline-flex items-center gap-1.5 sm:gap-2.5 font-mono text-[9px] sm:text-xs text-muted mb-6 whitespace-nowrap overflow-x-auto max-w-full no-scrollbar">
-      <span className="relative flex h-1.5 w-1.5 sm:h-2 sm:w-2 shrink-0">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-        <span className="relative inline-flex rounded-full h-1.5 w-1.5 sm:h-2 sm:w-2 bg-emerald-500"></span>
-      </span>
-      <span className="text-foreground/90 font-medium tracking-tight truncate">
-        {/* Shorten slightly on ultra-small mobile screens to ensure strict 1-line fit */}
-        <span className="xs:hidden sm:hidden">{PORTFOLIO_CONTENT.personal.mobileStatusText}</span>
-        <span className="hidden xs:inline sm:inline">{PORTFOLIO_CONTENT.personal.statusText}</span>
+    <div className="inline-flex items-center gap-2.5 px-4 py-2 rounded-full border border-[#2A2A30] bg-[#121215]/90 font-mono text-[11px] sm:text-[12.5px] text-[#C9C6BD] whitespace-nowrap max-w-full overflow-x-auto no-scrollbar">
+      <span
+        className="w-2 h-2 rounded-full bg-[#34D399] shrink-0"
+        style={{ boxShadow: '0 0 0 4px rgba(52,211,153,0.18)' }}
+        aria-hidden="true"
+      />
+      <span className="truncate">
+        <span className="sm:hidden">{PORTFOLIO_CONTENT.personal.mobileStatusText}</span>
+        <span className="hidden sm:inline">{PORTFOLIO_CONTENT.personal.statusText}</span>
       </span>
 
-      {/* Location and Live IST Time */}
-      <div className="flex items-center gap-1 sm:gap-2 pl-1.5 sm:pl-2 border-l border-border/70 text-[9px] sm:text-[11px] text-muted shrink-0">
-        <div className="flex items-center gap-1">
-          <MapPin className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-accent shrink-0" />
-          <span>{PORTFOLIO_CONTENT.personal.location}</span>
-        </div>
-        <span className="text-border">/</span>
-        <div className="flex items-center gap-1">
-          <Clock className="w-2.5 h-2.5 sm:w-3 sm:h-3 text-accent shrink-0" />
-          <span suppressHydrationWarning className="tabular-nums text-foreground/90">
-            {timeString || PORTFOLIO_CONTENT.personal.defaultTimeFallback} {PORTFOLIO_CONTENT.personal.timezoneLabel}
-          </span>
-        </div>
-      </div>
+      <span className="text-[#3A3A40]" aria-hidden="true">|</span>
+
+      <span className="text-[#A1A1AA] shrink-0">
+        {PORTFOLIO_CONTENT.personal.location}
+      </span>
+
+      <span className="text-[#3A3A40]" aria-hidden="true">/</span>
+
+      <span suppressHydrationWarning className="tabular-nums text-[#E4E1D8] shrink-0">
+        {timeString || PORTFOLIO_CONTENT.personal.defaultTimeFallback} {PORTFOLIO_CONTENT.personal.timezoneLabel}
+      </span>
     </div>
   );
-
 }
-
-

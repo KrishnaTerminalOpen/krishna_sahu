@@ -47,13 +47,13 @@ export default function Home() {
       {/* Top Navbar */}
       <Navbar onOpenCommandPalette={() => setIsCommandPaletteOpen(true)} />
 
+      {/* Full-bleed Hero Section */}
+      <HeroSection
+        onOpenAiAssistant={() => setIsAiAssistantOpen(true)}
+      />
+
       {/* Main Container - Centered Single Editorial Column (Max 1100px) */}
       <main className="max-w-editorial mx-auto px-6 sm:px-8 lg:px-12">
-        {/* Hero Section */}
-        <HeroSection
-          onOpenAiAssistant={() => setIsAiAssistantOpen(true)}
-        />
-
         {/* 01 / About Section */}
         <AboutSection />
 

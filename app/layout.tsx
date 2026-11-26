@@ -15,6 +15,7 @@ const serifFont = Fraunces({
 
 const sansFont = Inter({
   subsets: ['latin'],
+  weight: ['400', '500', '600'],
   variable: '--font-sans',
   display: 'swap',
 });
@@ -28,6 +29,7 @@ const displayFont = Instrument_Serif({
 
 const monoFont = JetBrains_Mono({
   subsets: ['latin'],
+  weight: ['400', '500'],
   variable: '--font-mono',
   display: 'swap',
 });
