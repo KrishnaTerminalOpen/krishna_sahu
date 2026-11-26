@@ -102,20 +102,16 @@ export function HeroSection({ onOpenAiAssistant: _onOpenAiAssistant }: HeroSecti
             aria-hidden="true"
           />
 
-          {/* Wide, softly feathered ambient amber glow (no sharp edges or tight border shadow) */}
+          {/* Soft ambient amber glow */}
           <div
-            className="absolute w-[480px] h-[520px] rounded-full pointer-events-none"
-            style={{
-              background:
-                'radial-gradient(closest-side, rgba(232, 160, 76, 0.2), rgba(232, 160, 76, 0.06) 55%, rgba(232, 160, 76, 0) 100%)',
-            }}
+            className="absolute w-72 h-80 rounded-full pointer-events-none blur-3xl opacity-25 bg-accent"
             aria-hidden="true"
           />
 
-          {/* Single clean outer arch border with transparent padding (no tight shadow line) */}
-          <div className="relative p-2.5 rounded-t-full rounded-b-2xl border border-foreground/30">
-            {/* Inner arch container */}
-            <div className="relative w-[220px] sm:w-[255px] aspect-[3/4] rounded-t-full rounded-b-xl bg-[#0e0f12] overflow-hidden">
+          {/* Outer arch border only (white/foreground) */}
+          <div className="relative p-3 rounded-t-full rounded-b-2xl border border-foreground/40 bg-surface/10 shadow-[0_0_60px_rgba(232,160,76,0.18)]">
+            {/* Inner arch container without border */}
+            <div className="relative w-[220px] sm:w-[255px] aspect-[3/4] rounded-t-full rounded-b-xl bg-[#101014] overflow-hidden">
               {personal.avatarUrl?.trim() ? (
                 <Image
                   src={personal.avatarUrl}
