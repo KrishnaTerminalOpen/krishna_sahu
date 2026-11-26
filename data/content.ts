@@ -299,10 +299,10 @@ export const PORTFOLIO_CONTENT = {
   resume: {
     sectionNumber: "06",
     sectionTitle: "Resume",
-    institution: "Technological University",
-    degree: "B.Tech in Computer Science & Engineering",
-    period: "2021 — 2025",
-    grade: "CGPA 8.9 / 10.0",
+    institution: "Manipal Institute of Technology (MIT), Manipal",
+    degree: "Master of Computer Applications (MCA)",
+    period: "2026 – 2028",
+    grade: "Ongoing · B.Sc. IT CGPA 8.9 / 10",
     downloadLabel: "Download Resume (PDF)",
   },
 

@@ -63,8 +63,8 @@ function answerFromKnowledgeBase(query: string): string | null {
   }
 
   // Education / College / Degree
-  if (q.includes('education') || q.includes('college') || q.includes('degree') || q.includes('cgpa') || q.includes('university') || q.includes('study') || q.includes('school')) {
-    return `Krishna is pursuing a Bachelor of Technology in Computer Science & Engineering (2021 — 2025) with a strong CGPA of 8.9/10.0, focusing on machine learning, algorithms, and distributed systems.`;
+  if (q.includes('education') || q.includes('college') || q.includes('degree') || q.includes('cgpa') || q.includes('university') || q.includes('study') || q.includes('school') || q.includes('mca') || q.includes('bsc') || q.includes('manipal')) {
+    return `Krishna is currently pursuing a Master of Computer Applications (MCA) at Manipal Institute of Technology (MIT), Manipal (2026 – 2028), after completing a Bachelor of Science in Information Technology (B.Sc. IT) (2022 – 2025) with a CGPA of 8.9 / 10.`;
   }
 
   // Certifications

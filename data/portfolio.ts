@@ -39,6 +39,14 @@ export interface ExperienceItem {
   highlight: string;
 }
 
+export interface EducationItem {
+  degree: string;
+  institution: string;
+  period: string;
+  status: 'Ongoing' | 'Completed';
+  cgpa?: string;
+}
+
 export interface CertificationItem {
   title: string;
   issuer: string;
@@ -105,6 +113,8 @@ export const PORTFOLIO_CONTENT = {
     sectionTitle: 'About',
     lead:
       'I bridge the gap between statistical modeling and production software. Rather than treating ML as a speculative black box, I focus on clean architectures, verified benchmarks, and software that holds up in real use.', // PLACEHOLDER
+    educationNote:
+      'Currently pursuing a Master of Computer Applications at MIT Manipal (2026–2028), after completing a Bachelor of Science in Information Technology with a CGPA of 8.9/10.',
     stats: [
       { value: 3, label: 'Years building', suffix: '+' }, // PLACEHOLDER
       { value: 14, label: 'Projects deployed', suffix: '+' }, // PLACEHOLDER
@@ -309,6 +319,26 @@ export const PORTFOLIO_CONTENT = {
     ] as ExperienceItem[],
   },
 
+  // Education (Latest first: MCA, then B.Sc. IT)
+  education: {
+    sectionTitle: 'Education',
+    items: [
+      {
+        degree: 'Master of Computer Applications (MCA)',
+        institution: 'Manipal Institute of Technology (MIT), Manipal',
+        period: '2026 – 2028',
+        status: 'Ongoing',
+      },
+      {
+        degree: 'Bachelor of Science in Information Technology (B.Sc. IT)',
+        institution: '[YOUR COLLEGE / UNIVERSITY NAME]', // PLACEHOLDER
+        period: '2022 – 2025',
+        status: 'Completed',
+        cgpa: 'CGPA 8.9 / 10',
+      },
+    ] as EducationItem[],
+  },
+
   // 05 / Certifications
   certifications: {
     sectionNumber: '05',
@@ -362,10 +392,10 @@ export const PORTFOLIO_CONTENT = {
   resume: {
     sectionNumber: '06',
     sectionTitle: 'Resume',
-    institution: 'Technological University', // PLACEHOLDER
-    degree: 'B.Tech in Computer Science & Engineering', // PLACEHOLDER
-    period: '2021 — 2025', // PLACEHOLDER
-    grade: 'CGPA 8.9 / 10.0', // PLACEHOLDER
+    institution: 'Manipal Institute of Technology (MIT), Manipal',
+    degree: 'Master of Computer Applications (MCA)',
+    period: '2026 – 2028',
+    grade: 'Ongoing · B.Sc. IT CGPA 8.9 / 10',
     downloadLabel: 'Download Resume (PDF)',
     viewPdfLabel: 'View PDF',
   },
