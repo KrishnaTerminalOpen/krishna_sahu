@@ -37,10 +37,6 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
           &ldquo;{personal.tagline}&rdquo;
         </p>
 
-        <p className="font-sans text-base text-muted font-light leading-relaxed max-w-xl mb-10">
-          {hero.intro}
-        </p>
-
         {/* Primary CTA followed by pill action buttons in same position */}
         <div className="space-y-4 pt-2">
           <div>
