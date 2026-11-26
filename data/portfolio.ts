@@ -73,7 +73,7 @@ export const PORTFOLIO_CONTENT = {
   personal: {
     name: 'Krishna Sahu',
     shortName: 'Krishna',
-    role: 'Data Science & AI/ML Engineer', // PLACEHOLDER
+    role: 'Full-Stack Developer & AI/ML in progress',
     tagline: "I build full-stack web apps that solve real problems, and now I'm growing into AI and data science.",
     location: 'Bengaluru, India', // PLACEHOLDER
     statusText: 'Open to engineering roles & collaborations', // PLACEHOLDER
