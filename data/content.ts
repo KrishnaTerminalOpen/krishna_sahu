@@ -59,7 +59,7 @@ export const PORTFOLIO_CONTENT = {
     timezone: "Asia/Kolkata",
     email: "krishnasahu.dev@gmail.com",
     socials: {
-      github: "https://github.com/krishnasahu",
+      github: "https://github.com/KrishnaTerminalOpen",
       linkedin: "https://linkedin.com/in/krishnasahu",
       twitter: "https://x.com/krishnasahu",
     },

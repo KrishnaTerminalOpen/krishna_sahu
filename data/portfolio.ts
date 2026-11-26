@@ -83,8 +83,8 @@ export const PORTFOLIO_CONTENT = {
     defaultTimeFallback: '12:00:00 PM',
     email: 'krishnasahu.dev@gmail.com', // PLACEHOLDER
     socials: {
-      github: 'https://github.com/krishnasahu', // PLACEHOLDER
-      githubHandle: '@krishnasahu', // PLACEHOLDER
+      github: 'https://github.com/KrishnaTerminalOpen',
+      githubHandle: '@KrishnaTerminalOpen',
       linkedin: 'https://linkedin.com/in/krishnasahu', // PLACEHOLDER
       linkedinHandle: 'krishna-sahu', // PLACEHOLDER
       twitter: 'https://x.com/krishnasahu', // PLACEHOLDER
