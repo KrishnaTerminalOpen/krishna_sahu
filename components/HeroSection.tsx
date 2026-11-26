@@ -109,15 +109,16 @@ export function HeroSection({ onOpenAiAssistant: _onOpenAiAssistant }: HeroSecti
           />
 
           {/* Outer hairline arch */}
-          <div className="relative p-2.5 rounded-t-full rounded-b-2xl border border-accent/25 bg-surface/20 backdrop-blur-[2px]">
+          <div className="relative p-3 rounded-t-full rounded-b-2xl border border-accent/35 bg-surface/10 shadow-[0_0_60px_rgba(232,160,76,0.18)]">
             {/* Inner glowing amber arch */}
-            <div className="relative w-[220px] sm:w-[250px] aspect-[3/4] rounded-t-full rounded-b-xl border border-accent/70 bg-surface overflow-hidden shadow-[0_0_35px_rgba(232,160,76,0.2)]">
+            <div className="relative w-[220px] sm:w-[255px] aspect-[3/4] rounded-t-full rounded-b-xl border border-accent/80 bg-[#101014] overflow-hidden shadow-[0_0_30px_rgba(232,160,76,0.22)]">
               {personal.avatarUrl?.trim() ? (
                 <Image
                   src={personal.avatarUrl}
                   alt={`${personal.name} portrait`}
                   fill
-                  sizes="(max-width: 1024px) 220px, 250px"
+                  priority
+                  sizes="(max-width: 1024px) 220px, 255px"
                   className="object-cover object-top"
                 />
               ) : (
