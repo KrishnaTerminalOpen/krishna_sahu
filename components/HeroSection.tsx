@@ -33,8 +33,8 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
         </div>
 
         {/* Crisp Intro Statement */}
-        <p className="font-serif text-2xl sm:text-3xl text-foreground/90 font-light leading-snug mb-8 max-w-2xl">
-          &ldquo;{personal.tagline}&rdquo;
+        <p className="font-serif text-lg sm:text-2xl text-foreground/90 font-light leading-snug mb-8 max-w-2xl">
+          {personal.tagline}
         </p>
 
         {/* Pill action buttons (icon-only single row on mobile, full pill on desktop) */}
