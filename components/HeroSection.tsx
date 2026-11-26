@@ -37,9 +37,9 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
           &ldquo;{personal.tagline}&rdquo;
         </p>
 
-        {/* Pill action buttons */}
+        {/* Pill action buttons (icon-only single row on mobile, full pill on desktop) */}
         <div className="pt-2">
-          <div className="flex flex-wrap items-center gap-3.5 font-mono text-sm">
+          <div className="flex flex-nowrap sm:flex-wrap items-center gap-3 sm:gap-3.5 font-mono text-sm">
             {[
               {
                 label: hero.links.email,
@@ -73,10 +73,12 @@ export function HeroSection({ onOpenAiAssistant }: HeroSectionProps) {
                   target={btn.external ? '_blank' : undefined}
                   rel={btn.external ? 'noopener noreferrer' : undefined}
                   download={btn.download}
-                  className="group inline-flex items-center gap-2.5 px-6 py-3 rounded-full border border-border bg-surface/90 text-foreground hover:bg-accent hover:border-accent hover:text-background hover:-translate-y-0.5 transition-all duration-200 shadow-xs"
+                  aria-label={btn.label}
+                  title={btn.label}
+                  className="group inline-flex items-center justify-center gap-2.5 p-3.5 sm:px-6 sm:py-3 rounded-full border border-border bg-surface/90 text-foreground hover:bg-accent hover:border-accent hover:text-background hover:-translate-y-0.5 transition-all duration-200 shadow-xs shrink-0"
                 >
                   <Icon className="w-4 h-4 text-accent group-hover:text-background transition-colors" />
-                  <span>{btn.label}</span>
+                  <span className="hidden sm:inline">{btn.label}</span>
                 </a>
               );
             })}
