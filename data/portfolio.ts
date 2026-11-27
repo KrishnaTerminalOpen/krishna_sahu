@@ -116,7 +116,7 @@ export const PORTFOLIO_CONTENT = {
     sectionTitle: 'About',
     leadPrefix: 'As a ',
     lead:
-      'I bridge the gap between statistical modeling and production software. Rather than treating ML as a speculative black box, I focus on clean architectures, verified benchmarks, and software that holds up in real use.', // PLACEHOLDER
+      "I build web apps that solve real problems. I'm now growing into AI and data science, aiming to bring machine learning into software people can actually use.",
     educationNote:
       'Currently pursuing a Master of Computer Applications at MIT Manipal (2026–2028), after completing a Bachelor of Science in Information Technology with a CGPA of 8.9/10.',
     stats: [
@@ -127,21 +127,21 @@ export const PORTFOLIO_CONTENT = {
     pillars: [
       {
         number: '01',
-        title: 'Production ML', // PLACEHOLDER
+        title: 'Full-Stack Web',
         description:
-          'Vision and tabular models trained with PyTorch, evaluated deterministically, and served via containerized FastAPI endpoints.', // PLACEHOLDER
+          'Responsive Next.js frontends and clean REST APIs, built with attention to usability and performance.',
       },
       {
         number: '02',
-        title: 'Data Intelligence', // PLACEHOLDER
+        title: 'Data & Databases',
         description:
-          'High-dimensional SQL transformations, cohort churn modeling, and analytics pipelines that expose signal over noise.', // PLACEHOLDER
+          "Strong SQL foundations and structured data handling, which I'm extending into analytics and data science.",
       },
       {
         number: '03',
-        title: 'Full-Stack Web', // PLACEHOLDER
+        title: 'Learning AI/ML',
         description:
-          'Next.js frontends and clean REST APIs that turn complex model outputs into intuitive, sub-second user experiences.', // PLACEHOLDER
+          'Building up machine learning skills with Python and PyTorch, with the goal of shipping models inside real applications.',
       },
     ],
   },

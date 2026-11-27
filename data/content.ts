@@ -78,7 +78,7 @@ export const PORTFOLIO_CONTENT = {
     sectionNumber: "01",
     sectionTitle: "About",
     lead:
-      "I bridge the gap between statistical modeling and production software. Rather than treating ML as a speculative black box, I focus on clean architectures, verified benchmarks, and software that holds up in real use.",
+      "As a Full-Stack Developer & AI/ML in progress, I build web apps that solve real problems. I'm now growing into AI and data science, aiming to bring machine learning into software people can actually use.",
     stats: [
       { value: 3, label: "Years building", suffix: "+" },
       { value: 14, label: "Projects deployed", suffix: "+" },
@@ -87,18 +87,18 @@ export const PORTFOLIO_CONTENT = {
     pillars: [
       {
         number: "01",
-        title: "Production ML",
-        description: "Vision and tabular models trained with PyTorch, evaluated deterministically, and served via containerized FastAPI endpoints.",
+        title: "Full-Stack Web",
+        description: "Responsive Next.js frontends and clean REST APIs, built with attention to usability and performance.",
       },
       {
         number: "02",
-        title: "Data Intelligence",
-        description: "High-dimensional SQL transformations, cohort churn modeling, and analytics pipelines that expose signal over noise.",
+        title: "Data & Databases",
+        description: "Strong SQL foundations and structured data handling, which I'm extending into analytics and data science.",
       },
       {
         number: "03",
-        title: "Full-Stack Web",
-        description: "Next.js frontends and clean REST APIs that turn complex model outputs into intuitive, sub-second user experiences.",
+        title: "Learning AI/ML",
+        description: "Building up machine learning skills with Python and PyTorch, with the goal of shipping models inside real applications.",
       },
     ],
   },
