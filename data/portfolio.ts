@@ -335,7 +335,7 @@ export const PORTFOLIO_CONTENT = {
       },
       {
         degree: 'Bachelor of Science in Information Technology (B.Sc. IT)',
-        institution: '[YOUR COLLEGE / UNIVERSITY NAME]', // PLACEHOLDER
+        institution: 'L S Raheja College',
         period: '2022 – 2025',
         status: 'Completed',
         cgpa: 'CGPA 8.9 / 10',
