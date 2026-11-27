@@ -116,7 +116,7 @@ export function HeroSection({ onOpenAiAssistant: _onOpenAiAssistant }: HeroSecti
               className="pointer-events-none absolute -inset-[80px] z-0 rounded-t-full rounded-b-[48px]"
               style={{
                 background:
-                  'radial-gradient(closest-side, rgba(232, 160, 76, 0.24), rgba(232, 160, 76, 0.1) 50%, rgba(232, 160, 76, 0) 100%)',
+                  'radial-gradient(closest-side, rgba(232, 160, 76, 0.42), rgba(232, 160, 76, 0.2) 55%, rgba(232, 160, 76, 0) 100%)',
                 filter: 'blur(40px)',
               }}
               aria-hidden="true"
