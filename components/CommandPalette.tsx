@@ -142,13 +142,13 @@ export function CommandPalette({
       },
     },
     {
-      id: 'nav-experience',
+      id: 'nav-education',
       icon: Briefcase,
-      title: '04 / Experience Timeline',
-      description: 'Research lab internships and data science fellowship',
+      title: '04 / Education',
+      description: 'Master of Computer Applications (MCA) and B.Sc. IT timeline',
       category: 'Navigation',
       run: () => {
-        document.getElementById('experience')?.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById('education')?.scrollIntoView({ behavior: 'smooth' });
         onClose();
       },
     },

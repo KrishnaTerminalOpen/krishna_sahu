@@ -323,8 +323,9 @@ export const PORTFOLIO_CONTENT = {
     ] as ExperienceItem[],
   },
 
-  // Education (Latest first: MCA, then B.Sc. IT)
+  // 04 / Education (Latest first: MCA, then B.Sc. IT)
   education: {
+    sectionNumber: '04',
     sectionTitle: 'Education',
     items: [
       {
