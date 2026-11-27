@@ -60,7 +60,7 @@ export const PORTFOLIO_CONTENT = {
     email: "krishnasahu.dev@gmail.com",
     socials: {
       github: "https://github.com/KrishnaTerminalOpen",
-      linkedin: "https://linkedin.com/in/krishnasahu",
+      linkedin: "https://www.linkedin.com/in/krishna-sahu-832119229/",
       twitter: "https://x.com/krishnasahu",
     },
     resumePath: "/resume.pdf",

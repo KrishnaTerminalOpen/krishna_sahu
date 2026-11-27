@@ -85,8 +85,8 @@ export const PORTFOLIO_CONTENT = {
     socials: {
       github: 'https://github.com/KrishnaTerminalOpen',
       githubHandle: '@KrishnaTerminalOpen',
-      linkedin: 'https://linkedin.com/in/krishnasahu', // PLACEHOLDER
-      linkedinHandle: 'krishna-sahu', // PLACEHOLDER
+      linkedin: 'https://www.linkedin.com/in/krishna-sahu-832119229/',
+      linkedinHandle: 'krishna-sahu-832119229',
       twitter: 'https://x.com/krishnasahu', // PLACEHOLDER
     },
     resumePath: '/resume.pdf', // PLACEHOLDER
