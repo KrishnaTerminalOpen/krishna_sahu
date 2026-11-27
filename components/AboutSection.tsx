@@ -13,6 +13,7 @@ export function AboutSection() {
       <SectionHeader
         number={about.sectionNumber}
         title={about.sectionTitle}
+        labelClassName="text-base sm:text-lg"
       />
 
       {/* Editorial Lead Paragraph with inline highlighted role */}
