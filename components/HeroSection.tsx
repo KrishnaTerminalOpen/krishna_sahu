@@ -14,7 +14,7 @@ export function HeroSection({ onOpenAiAssistant: _onOpenAiAssistant }: HeroSecti
   const { personal, hero } = PORTFOLIO_CONTENT;
 
   return (
-    <section className="relative min-h-[80vh] flex flex-col justify-center pt-32 sm:pt-36 md:pt-38 pb-20 overflow-hidden border-b border-border">
+    <section className="relative min-h-[80vh] flex flex-col justify-center pt-32 sm:pt-36 md:pt-38 pb-20 border-b border-border">
       <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-10 items-center">
         {/* Left Column: Identity, Role, Tagline, Action Pills */}
         <div className="lg:col-span-7 flex flex-col items-start">
@@ -95,28 +95,35 @@ export function HeroSection({ onOpenAiAssistant: _onOpenAiAssistant }: HeroSecti
           </div>
         </div>
 
-        {/* Right Column: Glowing Amber Arch Portrait Frame + Tech Coordinates */}
+        {/* Right Column: Glowing Amber Arch Portrait Frame */}
         <div className="lg:col-span-5 flex flex-col items-center justify-center relative py-4">
-          {/* Subtle dot-grid backdrop behind the arch */}
+          {/* Subtle dot-grid backdrop behind the arch (fades to transparent within closest-side bounds) */}
           <div
-            className="absolute inset-0 pointer-events-none opacity-60"
+            className="absolute -inset-12 pointer-events-none opacity-60"
             style={{
               backgroundImage: 'radial-gradient(rgba(232, 160, 76, 0.22) 1px, transparent 1px)',
               backgroundSize: '20px 20px',
-              maskImage: 'radial-gradient(circle at center, black 35%, transparent 72%)',
-              WebkitMaskImage: 'radial-gradient(circle at center, black 35%, transparent 72%)',
+              maskImage: 'radial-gradient(closest-side, black 35%, transparent 100%)',
+              WebkitMaskImage: 'radial-gradient(closest-side, black 35%, transparent 100%)',
             }}
             aria-hidden="true"
           />
 
-          {/* Soft ambient amber glow */}
-          <div
-            className="absolute w-72 h-80 rounded-full pointer-events-none blur-3xl opacity-25 bg-accent"
-            aria-hidden="true"
-          />
+          {/* Portrait frame wrapper holding centered, symmetrical outer glow layer behind frame */}
+          <div className="relative">
+            {/* Symmetrical outer glow layer (-80px on every side, fades completely to transparent) */}
+            <div
+              className="pointer-events-none absolute -inset-[80px] z-0 rounded-t-full rounded-b-[48px]"
+              style={{
+                background:
+                  'radial-gradient(closest-side, rgba(232, 160, 76, 0.24), rgba(232, 160, 76, 0.1) 50%, rgba(232, 160, 76, 0) 100%)',
+                filter: 'blur(40px)',
+              }}
+              aria-hidden="true"
+            />
 
-          {/* Outer arch border only (white/foreground) */}
-          <div className="relative p-3 rounded-t-full rounded-b-2xl border border-foreground/40 bg-surface/10 shadow-[0_0_60px_rgba(232,160,76,0.18)]">
+            {/* Outer arch border only (white/foreground) — frame & border untouched */}
+            <div className="relative z-10 p-3 rounded-t-full rounded-b-2xl border border-foreground/40 bg-surface/10">
             {/* Inner arch container without border */}
             <div className="relative w-[220px] sm:w-[255px] aspect-[3/4] rounded-t-full rounded-b-xl bg-[#101014] overflow-hidden">
               {personal.avatarUrl?.trim() ? (
@@ -142,6 +149,7 @@ export function HeroSection({ onOpenAiAssistant: _onOpenAiAssistant }: HeroSecti
               {/* Subtle bottom vignette inside arch */}
               <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent pointer-events-none" />
             </div>
+          </div>
           </div>
         </div>
       </div>
