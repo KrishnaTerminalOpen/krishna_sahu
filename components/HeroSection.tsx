@@ -77,10 +77,17 @@ export function HeroSection({ onOpenAiAssistant: _onOpenAiAssistant }: HeroSecti
                     download={btn.download}
                     aria-label={btn.label}
                     title={btn.label}
-                    className="group inline-flex items-center justify-center gap-2.5 p-3.5 sm:px-6 sm:py-3 rounded-full border border-border bg-surface/90 text-foreground hover:bg-accent hover:border-accent hover:text-background hover:-translate-y-0.5 transition-all duration-200 shadow-xs shrink-0"
+                    className="group relative overflow-hidden inline-flex items-center justify-center gap-2.5 p-3.5 sm:px-6 sm:py-3 rounded-full border border-border bg-surface/90 text-foreground hover:bg-accent hover:border-accent hover:text-background hover:-translate-y-1 hover:shadow-[0_10px_28px_-6px_rgba(232,160,76,0.45)] active:translate-y-0 active:scale-[0.98] transition-all duration-300 ease-out shadow-xs shrink-0"
                   >
-                    <Icon className="w-4 h-4 text-accent group-hover:text-background transition-colors" />
-                    <span className="hidden sm:inline">{btn.label}</span>
+                    {/* Light sheen sweep across pill on hover */}
+                    <span
+                      className="pointer-events-none absolute inset-0 -translate-x-full group-hover:translate-x-full transition-transform duration-700 ease-in-out bg-gradient-to-r from-transparent via-white/25 to-transparent"
+                      aria-hidden="true"
+                    />
+                    <Icon className="relative z-10 w-4 h-4 text-accent group-hover:text-background group-hover:scale-110 group-hover:-rotate-6 transition-all duration-300" />
+                    <span className="relative z-10 hidden sm:inline transition-transform duration-300 group-hover:translate-x-0.5">
+                      {btn.label}
+                    </span>
                   </a>
                 );
               })}
