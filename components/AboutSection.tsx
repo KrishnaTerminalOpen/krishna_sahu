@@ -15,14 +15,10 @@ export function AboutSection() {
         title={about.sectionTitle}
       />
 
-      {/* Highlighted Role Line */}
-      <p className="font-mono text-sm sm:text-base text-accent font-normal mb-4">
-        {personal.role}
-      </p>
-
-      {/* Editorial Lead Paragraph */}
+      {/* Editorial Lead Paragraph with inline highlighted role */}
       <p className="font-serif text-2xl sm:text-3xl text-foreground/90 font-light leading-relaxed max-w-3xl mb-5">
-        {about.lead}
+        {about.leadPrefix}
+        <span className="text-accent">{personal.role}</span>, {about.lead}
       </p>
 
       {about.educationNote && (

@@ -114,6 +114,7 @@ export const PORTFOLIO_CONTENT = {
   about: {
     sectionNumber: '01',
     sectionTitle: 'About',
+    leadPrefix: 'As a ',
     lead:
       'I bridge the gap between statistical modeling and production software. Rather than treating ML as a speculative black box, I focus on clean architectures, verified benchmarks, and software that holds up in real use.', // PLACEHOLDER
     educationNote:
