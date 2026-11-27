@@ -77,7 +77,7 @@ export function HeroSection({ onOpenAiAssistant: _onOpenAiAssistant }: HeroSecti
                     download={btn.download}
                     aria-label={btn.label}
                     title={btn.label}
-                    className="group relative overflow-hidden inline-flex items-center justify-center gap-2.5 p-3.5 sm:px-6 sm:py-3 rounded-full border border-foreground/15 dark:border-border bg-surface/95 text-foreground hover:border-accent hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-300 ease-out shadow-sm dark:shadow-xs shrink-0"
+                    className="group relative overflow-hidden inline-flex items-center justify-center gap-2.5 p-3.5 sm:px-6 sm:py-3 rounded-full border border-foreground/15 dark:border-border bg-surface/95 text-foreground hover:border-[#E8A04C] dark:hover:border-[#E8A04C] hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-300 ease-out shadow-sm dark:shadow-xs shrink-0"
                   >
                     {/* Light sheen sweep across pill on hover */}
                     <span
