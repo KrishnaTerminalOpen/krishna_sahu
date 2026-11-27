@@ -335,7 +335,7 @@ export const PORTFOLIO_CONTENT = {
       },
       {
         degree: 'Bachelor of Science in Information Technology (B.Sc. IT)',
-        institution: 'L S Raheja College',
+        institution: 'L S Raheja College, Mumbai University',
         period: '2022 – 2025',
         status: 'Completed',
         cgpa: 'CGPA 8.9 / 10',
