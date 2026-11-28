@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { MessageSquareText } from 'lucide-react';
+import { BotMessageSquare } from 'lucide-react';
 import type { AuraVoiceState } from '@/hooks/useAuraVoice';
 
 interface AiAssistantTriggerProps {
@@ -26,7 +26,7 @@ export function AiAssistantTrigger({
         aria-label="Ask Aura — Open AI Assistant"
         className="relative group w-11 h-11 rounded-full flex items-center justify-center border border-border bg-surface/95 backdrop-blur-md text-foreground/80 shadow-sm hover:border-accent hover:text-accent active:scale-95 transition-all duration-200"
       >
-        <MessageSquareText className="w-[18px] h-[18px]" strokeWidth={1.75} />
+        <BotMessageSquare className="w-[19px] h-[19px]" strokeWidth={1.75} />
 
         {isVoiceMode && (
           <span
