@@ -13,20 +13,14 @@ export function AboutSection() {
       <SectionHeader
         number={about.sectionNumber}
         title={about.sectionTitle}
-        labelClassName="text-base sm:text-lg"
+        labelClassName="text-sm"
       />
 
       {/* Editorial Lead Paragraph with inline highlighted role */}
-      <p className="font-serif text-2xl sm:text-3xl text-foreground/90 font-light leading-relaxed max-w-3xl mb-5">
+      <p className="font-serif text-2xl sm:text-3xl text-foreground/90 font-light leading-relaxed max-w-3xl mb-10">
         {about.leadPrefix}
         <span className="text-accent">{personal.role}</span>, {about.lead}
       </p>
-
-      {about.educationNote && (
-        <p className="font-sans text-sm sm:text-base text-muted font-light leading-relaxed max-w-3xl mb-10">
-          {about.educationNote}
-        </p>
-      )}
 
       {/* 3 Focused "What that looks like" Pillars */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 py-8 border-t border-border">
